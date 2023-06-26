@@ -2,6 +2,7 @@
 import { defineStore } from 'pinia'
 
 import type { UserState } from './types/type'
+import {constantRoute} from "@/router/routes";
 
 //创建用户小仓库
 const useUserStore = defineStore('User', {
@@ -9,7 +10,7 @@ const useUserStore = defineStore('User', {
   state: (): UserState => {
     return {
       token: '', //用户唯一标识token
-      menuRoutes: [], //仓库存储生成菜单需要数组(路由)
+      menuRoutes: constantRoute, //仓库存储生成菜单需要数组(路由)
       username: '',
       avatar: '',
       //存储当前用户是否包含某一个按钮
