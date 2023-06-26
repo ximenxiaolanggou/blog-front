@@ -17,9 +17,7 @@ const useUserStore = defineStore('User', {
     }
   },
   //异步|逻辑的地方
-  actions: {
-
-  },
+  actions: {},
   getters: {},
 })
 //对外暴露获取小仓库方法
