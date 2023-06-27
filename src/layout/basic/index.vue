@@ -102,7 +102,7 @@ export default {
     padding: 20px;
     overflow: auto;
     transition: all 0.3s;
-
+    background-color: whitesmoke;
     &.fold {
       width: calc(100vw - $base-menu-min-width );
       left: $base-menu-min-width;

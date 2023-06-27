@@ -74,6 +74,36 @@ export const constantRoute = [
     ],
   },
   {
+    path: '/blog',
+    component: () => import('@/layout/basic/index.vue'),
+    name: 'blog',
+    meta: {
+      title: '博客管理',
+      icon: 'Lock',
+    },
+    redirect: '/blog/admin/list',
+    children: [
+      {
+        path: '/blog/admin/list',
+        component: () => import('@/views/blog/admin/list/index.vue'),
+        name: 'blog-list',
+        meta: {
+          title: '列表',
+          icon: 'User',
+        },
+      },
+      {
+        path: '/blog/admin/category',
+        component: () => import('@/views/blog/admin/category/index.vue'),
+        name: 'blog-category',
+        meta: {
+          title: '类别',
+          icon: 'UserFilled',
+        },
+      }
+    ],
+  },
+  {
     //404
     path: '/404',
     component: () => import('@/views/404/index.vue'),

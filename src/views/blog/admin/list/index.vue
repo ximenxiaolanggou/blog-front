@@ -1,13 +1,37 @@
 <template>
-  <!-- 用户 header -->
-  <div class="container user-header">
-    <el-input class="user-search-input" v-model="formInline" placeholder="用户名/手机号/邮箱" clearable />
-    <el-button class="user-search-btn" type="primary" @click="onSubmit">查询</el-button>
-    <el-button type="primary" @click="onSubmit">添加</el-button>
-  </div>
+  <el-form class="blog-list-form container" :inline="true" :model="formInline">
+    <el-form-item label="标题">
+      <el-input v-model="formInline" placeholder="请输入标题" clearable />
+    </el-form-item>
+    <el-form-item label="类别">
+      <el-select
+          v-model="formInline"
+          placeholder="请选择类别"
+          clearable
+      >
+        <el-option label="Zone one" value="shanghai" />
+        <el-option label="Zone two" value="beijing" />
+      </el-select>
+    </el-form-item>
+    <el-form-item label="标签">
+      <el-select
+          v-model="formInline"
+          placeholder="请选择标签"
+          clearable
+      >
+        <el-option label="Zone one" value="shanghai" />
+        <el-option label="Zone two" value="beijing" />
+      </el-select>
+    </el-form-item>
+    <el-form-item>
+      <el-button type="primary" @click="onSubmit">查询</el-button>
+    </el-form-item>
+    <el-form-item>
+      <el-button type="primary" @click="onSubmit">添加</el-button>
+    </el-form-item>
+  </el-form>
 
-  <!-- 用户 table -->
-  <div class="user-list-table container" >
+  <div class="blog-list-table container" >
     <el-table  header-align="center" :data="tableData">
       <el-table-column prop="date" label="标题" width="400" />
       <el-table-column prop="address" label="类别" />
@@ -27,7 +51,7 @@
       </el-table-column>
     </el-table>
     <el-pagination
-        class="user-list-pagination"
+        class="blog-list-pagination"
         small
         background
         layout="prev, pager, next"
@@ -88,23 +112,17 @@ const tableData = [
   padding: 10px;
   background-color: white;
 }
-.user-header {
+.blog-list-form {
   height: 75px;
-  line-height: 50px;
-  .user-search-input {
-    width: 300px;
-  }
-  .user-search-btn {
-    margin-left: 20px;
-  }
+  line-height: 65px;
 }
-.user-list-table {
+.blog-list-table {
   padding: 10px;
   height: calc(100vh - $base-tabbar-height - 140px);
   width: 100%;
   margin-top: 20px;
 }
-.user-list-pagination {
+.blog-list-pagination {
   margin-top: 20px;
 }
 </style>
