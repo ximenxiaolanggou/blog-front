@@ -1,5 +1,11 @@
 import axios from 'axios'
 import { ElMessage } from 'element-plus'
+import {useRouter} from 'vue-router';
+import useUserStore from '../store/modules/user'
+import pinia from '../store'
+let $router = useRouter();
+let userStore
+//获取存储用户信息的仓库对象
 //创建axios实例
 let request = axios.create({
   baseURL: import.meta.env.VITE_APP_BASE_API,
@@ -7,6 +13,11 @@ let request = axios.create({
 })
 //请求拦截器
 request.interceptors.request.use((config) => {
+  const tokenName = localStorage.getItem("TOKEN_NAME")
+  const tokenValue = localStorage.getItem("TOKEN_VALUE")
+  if(tokenName) {
+    config.headers[tokenName] = `bearer ${tokenValue}`
+  }
   return config
 })
 //响应拦截器
@@ -17,7 +28,7 @@ request.interceptors.response.use(
   (error) => {
     //处理网络错误
     let msg = ''
-    let status = error.response.status
+    const status = error.response.status
     switch (status) {
       case 401:
         msg = 'token过期'
@@ -29,7 +40,7 @@ request.interceptors.response.use(
         msg = '请求地址错误'
         break
       case 500:
-        msg = '服务器出现问题'
+        msg = error.response.data.msg
         break
       default:
         msg = '无网络'
@@ -38,7 +49,18 @@ request.interceptors.response.use(
       type: 'error',
       message: msg,
     })
-    return Promise.reject(error)
+    // token异常
+    if(error.response.data.code == 6) {
+      if(!userStore) {
+        userStore = useUserStore(pinia)
+      }
+      localStorage.clear()
+      userStore.tokenName = ''
+      userStore.tokenValue = ''
+      userStore.user = null
+      $router.push("/")
+    }
+    return Promise.reject(error.response.data)
   },
 )
 export default request

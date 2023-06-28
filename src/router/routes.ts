@@ -21,7 +21,7 @@ export const constantRoute = [
       hidden: false,
       icon: '',
     },
-    redirect: '/home',
+    redirect: '/blog',
     children: [
       {
         path: '/home',
@@ -30,45 +30,6 @@ export const constantRoute = [
           title: '首页',
           hidden: false,
           icon: 'HomeFilled',
-        },
-      },
-    ],
-  },
-  {
-    path: '/system',
-    component: () => import('@/layout/basic/index.vue'),
-    name: 'system',
-    meta: {
-      title: '系统管理',
-      icon: 'Lock',
-    },
-    redirect: '/system/user',
-    children: [
-      {
-        path: '/system/user',
-        component: () => import('@/views/system/user/index.vue'),
-        name: 'User',
-        meta: {
-          title: '用户管理',
-          icon: 'User',
-        },
-      },
-      {
-        path: '/system/role',
-        component: () => import('@/views/system/role/index.vue'),
-        name: 'Role',
-        meta: {
-          title: '角色管理',
-          icon: 'UserFilled',
-        },
-      },
-      {
-        path: '/system/permission',
-        component: () => import('@/views/system/permission/index.vue'),
-        name: 'Permission',
-        meta: {
-          title: '菜单管理',
-          icon: 'Monitor',
         },
       },
     ],

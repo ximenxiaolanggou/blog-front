@@ -11,20 +11,38 @@ import type {
 //项目用户相关的请求地址
 
 enum API {
-  LOGIN_URL = '/admin/acl/index/login',
+  AUTH_URL = '/auth/login',
+  USERINFO_URL = '/auth/userInfo',
+  LOGOUT_URL = '/auth/logout',
 
-  USERINFO_URL = '/admin/acl/index/info',
-
-  LOGOUT_URL = '/admin/acl/index/logout',
 }
 //登录接口
-export const reqLogin = (data: loginFormData) =>
-  request.post<any, loginResponseData>(API.LOGIN_URL, data)
-//获取用户信息
+/**
+ * 登录
+ * @param data
+ * @returns {AxiosPromise}
+ */
+export function login(data) {
+  return request({
+    url: API.AUTH_URL,
+    method: 'post',
+    data
+  })
+}
 
-export const reqUserInfo = () =>
-  request.get<any, userInfoReponseData>(API.USERINFO_URL)
 
-//退出登录
+export function userInfo() {
+  return request({
+    url: API.USERINFO_URL,
+    method: 'get',
+  })
+}
 
-export const reqLogout = () => request.post<any, any>(API.LOGOUT_URL)
+
+export function logout() {
+  return request({
+    url: API.LOGOUT_URL,
+    method: 'delete',
+  })
+}
+
