@@ -1,9 +1,9 @@
 //创建用户相关的小仓库
 import { defineStore } from 'pinia'
 import type { UserState } from './types/type'
-import {constantRoute} from "@/router/routes";
-import {login, logout, userInfo} from "@/api/auth";
-import router from "@/router";
+import { constantRoute } from '@/router/routes'
+import { login, logout, userInfo } from '@/api/auth'
+import router from '@/router'
 
 //创建用户小仓库
 const useUserStore = defineStore('User', {
@@ -34,7 +34,6 @@ const useUserStore = defineStore('User', {
       localStorage.setItem('TOKEN_VALUE', this.tokenValue)
     },
 
-
     //获取用户信息方法
     async userInfo() {
       //获取用户信息进行存储仓库当中[用户头像、名字]
@@ -45,13 +44,13 @@ const useUserStore = defineStore('User', {
 
     // 登出
     async userLogout() {
-      const result =  await logout()
+      const result = await logout()
       localStorage.clear()
       this.tokenName = ''
       this.tokenValue = ''
       this.user = null
-      router.push("/login")
-    }
+      router.push('/login')
+    },
   },
   getters: {},
 })

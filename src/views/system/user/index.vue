@@ -1,47 +1,55 @@
 <template>
   <!-- 用户 header -->
   <div class="container user-header">
-    <el-input class="user-search-input" v-model="formInline" placeholder="用户名/手机号/邮箱" clearable />
-    <el-button class="user-search-btn" type="primary" @click="onSubmit">查询</el-button>
+    <el-input
+      class="user-search-input"
+      v-model="formInline"
+      placeholder="用户名/手机号/邮箱"
+      clearable
+    />
+    <el-button class="user-search-btn" type="primary" @click="onSubmit">
+      查询
+    </el-button>
     <el-button type="primary" @click="onSubmit">添加</el-button>
   </div>
 
   <!-- 用户 table -->
-  <div class="user-list-table container" >
-    <el-table  header-align="center" :data="tableData">
+  <div class="user-list-table container">
+    <el-table header-align="center" :data="tableData">
       <el-table-column prop="date" label="标题" width="400" />
       <el-table-column prop="address" label="类别" />
       <el-table-column prop="address" label="标签" />
       <el-table-column label="操作">
         <template #default="scope">
-          <el-button size="small" @click="handleEdit(scope.$index, scope.row)"
-          >Edit</el-button
-          >
+          <el-button size="small" @click="handleEdit(scope.$index, scope.row)">
+            Edit
+          </el-button>
           <el-button
-              size="small"
-              type="danger"
-              @click="handleDelete(scope.$index, scope.row)"
-          >Delete</el-button
+            size="small"
+            type="danger"
+            @click="handleDelete(scope.$index, scope.row)"
           >
+            Delete
+          </el-button>
         </template>
       </el-table-column>
     </el-table>
     <el-pagination
-        class="user-list-pagination"
-        small
-        background
-        layout="prev, pager, next"
-        :total="50"
+      class="user-list-pagination"
+      small
+      background
+      layout="prev, pager, next"
+      :total="50"
     />
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref } from 'vue'
 
-import { MdEditor } from 'md-editor-v3';
-import 'md-editor-v3/lib/style.css';
-const text = ref('# Hello Editor');
+import { MdEditor } from 'md-editor-v3'
+import 'md-editor-v3/lib/style.css'
+const text = ref('# Hello Editor')
 const tableData = [
   {
     date: '2016-05-03',
@@ -84,7 +92,7 @@ const tableData = [
 <style scoped lang="scss">
 .container {
   border-radius: 10px;
-  box-shadow: 2px 1px 5px 2px rgba(0,0,0,.1);
+  box-shadow: 2px 1px 5px 2px rgba(0, 0, 0, 0.1);
   padding: 10px;
   background-color: white;
 }

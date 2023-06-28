@@ -4,21 +4,13 @@
       <el-input v-model="formInline" placeholder="请输入标题" clearable />
     </el-form-item>
     <el-form-item label="类别">
-      <el-select
-          v-model="formInline"
-          placeholder="请选择类别"
-          clearable
-      >
+      <el-select v-model="formInline" placeholder="请选择类别" clearable>
         <el-option label="Zone one" value="shanghai" />
         <el-option label="Zone two" value="beijing" />
       </el-select>
     </el-form-item>
     <el-form-item label="标签">
-      <el-select
-          v-model="formInline"
-          placeholder="请选择标签"
-          clearable
-      >
+      <el-select v-model="formInline" placeholder="请选择标签" clearable>
         <el-option label="Zone one" value="shanghai" />
         <el-option label="Zone two" value="beijing" />
       </el-select>
@@ -31,41 +23,42 @@
     </el-form-item>
   </el-form>
 
-  <div class="blog-list-table container" >
-    <el-table  header-align="center" :data="tableData">
+  <div class="blog-list-table container">
+    <el-table header-align="center" :data="tableData">
       <el-table-column prop="date" label="标题" width="400" />
       <el-table-column prop="address" label="类别" />
       <el-table-column prop="address" label="标签" />
       <el-table-column label="操作">
         <template #default="scope">
-          <el-button size="small" @click="handleEdit(scope.$index, scope.row)"
-          >Edit</el-button
-          >
+          <el-button size="small" @click="handleEdit(scope.$index, scope.row)">
+            Edit
+          </el-button>
           <el-button
-              size="small"
-              type="danger"
-              @click="handleDelete(scope.$index, scope.row)"
-          >Delete</el-button
+            size="small"
+            type="danger"
+            @click="handleDelete(scope.$index, scope.row)"
           >
+            Delete
+          </el-button>
         </template>
       </el-table-column>
     </el-table>
     <el-pagination
-        class="blog-list-pagination"
-        small
-        background
-        layout="prev, pager, next"
-        :total="50"
+      class="blog-list-pagination"
+      small
+      background
+      layout="prev, pager, next"
+      :total="50"
     />
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref } from 'vue'
 
-import { MdEditor } from 'md-editor-v3';
-import 'md-editor-v3/lib/style.css';
-const text = ref('# Hello Editor');
+import { MdEditor } from 'md-editor-v3'
+import 'md-editor-v3/lib/style.css'
+const text = ref('# Hello Editor')
 const tableData = [
   {
     date: '2016-05-03',
@@ -108,7 +101,7 @@ const tableData = [
 <style scoped lang="scss">
 .container {
   border-radius: 10px;
-  box-shadow: 2px 1px 5px 2px rgba(0,0,0,.1);
+  box-shadow: 2px 1px 5px 2px rgba(0, 0, 0, 0.1);
   padding: 10px;
   background-color: white;
 }

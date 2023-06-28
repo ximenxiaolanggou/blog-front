@@ -1,9 +1,9 @@
 import axios from 'axios'
 import { ElMessage } from 'element-plus'
-import {useRouter} from 'vue-router';
+import { useRouter } from 'vue-router'
 import useUserStore from '../store/modules/user'
 import pinia from '../store'
-let $router = useRouter();
+let $router = useRouter()
 let userStore
 //获取存储用户信息的仓库对象
 //创建axios实例
@@ -13,9 +13,9 @@ let request = axios.create({
 })
 //请求拦截器
 request.interceptors.request.use((config) => {
-  const tokenName = localStorage.getItem("TOKEN_NAME")
-  const tokenValue = localStorage.getItem("TOKEN_VALUE")
-  if(tokenName) {
+  const tokenName = localStorage.getItem('TOKEN_NAME')
+  const tokenValue = localStorage.getItem('TOKEN_VALUE')
+  if (tokenName) {
     config.headers[tokenName] = `bearer ${tokenValue}`
   }
   return config
@@ -50,15 +50,15 @@ request.interceptors.response.use(
       message: msg,
     })
     // token异常
-    if(error.response.data.code == 6) {
-      if(!userStore) {
+    if (error.response.data.code == 6) {
+      if (!userStore) {
         userStore = useUserStore(pinia)
       }
       localStorage.clear()
       userStore.tokenName = ''
       userStore.tokenValue = ''
       userStore.user = null
-      $router.push("/")
+      $router.push('/')
     }
     return Promise.reject(error.response.data)
   },

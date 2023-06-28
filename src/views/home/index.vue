@@ -14,6 +14,6 @@ let userStore = useUserStore()
 
 <style scoped>
 .main {
-  box-shadow: 2px 1px 5px 2px rgba(0,0,0,.2);
+  box-shadow: 2px 1px 5px 2px rgba(0, 0, 0, 0.2);
 }
 </style>

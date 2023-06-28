@@ -14,7 +14,6 @@ enum API {
   AUTH_URL = '/auth/login',
   USERINFO_URL = '/auth/userInfo',
   LOGOUT_URL = '/auth/logout',
-
 }
 //登录接口
 /**
@@ -26,10 +25,9 @@ export function login(data) {
   return request({
     url: API.AUTH_URL,
     method: 'post',
-    data
+    data,
   })
 }
-
 
 export function userInfo() {
   return request({
@@ -38,11 +36,9 @@ export function userInfo() {
   })
 }
 
-
 export function logout() {
   return request({
     url: API.LOGOUT_URL,
     method: 'delete',
   })
 }
-

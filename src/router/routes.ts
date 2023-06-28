@@ -61,7 +61,7 @@ export const constantRoute = [
           title: '类别',
           icon: 'UserFilled',
         },
-      }
+      },
     ],
   },
   {
@@ -74,7 +74,7 @@ export const constantRoute = [
       hidden: true,
       icon: 'DocumentDelete',
     },
-  }
+  },
 ]
 
 //任意路由
