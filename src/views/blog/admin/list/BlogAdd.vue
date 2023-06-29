@@ -26,7 +26,7 @@
 </template>
 
 <script setup lang="ts">
-import {ref} from 'vue'
+import { ref } from 'vue'
 import { MdEditor } from 'md-editor-v3'
 
 const text = ref('# Hello Editor')
@@ -45,7 +45,7 @@ const text = ref('# Hello Editor')
 }
 .md {
   border-radius: 10px;
-  margin-top: 20px ;
+  margin-top: 20px;
   padding: 20px;
   height: calc(100vh - $base-tabbar-height - 140px);
 }

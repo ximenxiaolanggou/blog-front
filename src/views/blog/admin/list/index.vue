@@ -55,8 +55,8 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import {useRouter} from "vue-router";
-const $router = useRouter();
+import { useRouter } from 'vue-router'
+const $router = useRouter()
 const tableData = [
   {
     date: '2016-05-03',
@@ -96,7 +96,7 @@ const tableData = [
 ]
 
 // 博客添加
-const blogAdd = () => $router.push({name: 'blog-add'})
+const blogAdd = () => $router.push({ name: 'blog-add' })
 </script>
 
 <style scoped lang="scss">
