@@ -54,6 +54,16 @@ export const constantRoute = [
         },
       },
       {
+        path: '/blog/admin/blog/add',
+        component: () => import('@/views/blog/admin/list/BlogAdd.vue'),
+        name: 'blog-add',
+        meta: {
+          hidden: true,
+          title: '添加',
+          icon: 'User',
+        },
+      },
+      {
         path: '/blog/admin/category',
         component: () => import('@/views/blog/admin/category/index.vue'),
         name: 'blog-category',

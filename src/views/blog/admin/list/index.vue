@@ -19,7 +19,7 @@
       <el-button type="primary" @click="onSubmit">查询</el-button>
     </el-form-item>
     <el-form-item>
-      <el-button type="primary" @click="onSubmit">添加</el-button>
+      <el-button type="primary" @click="blogAdd">添加</el-button>
     </el-form-item>
   </el-form>
 
@@ -55,10 +55,8 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-
-import { MdEditor } from 'md-editor-v3'
-import 'md-editor-v3/lib/style.css'
-const text = ref('# Hello Editor')
+import {useRouter} from "vue-router";
+const $router = useRouter();
 const tableData = [
   {
     date: '2016-05-03',
@@ -96,6 +94,9 @@ const tableData = [
     address: 'No. 189, Grove St, Los Angeles',
   },
 ]
+
+// 博客添加
+const blogAdd = () => $router.push({name: 'blog-add'})
 </script>
 
 <style scoped lang="scss">

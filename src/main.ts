@@ -11,6 +11,8 @@ import '@/styles/index.scss'
 import router from './router'
 //引入仓库
 import pinia from './store'
+// 引入md-editor-v3样式
+import 'md-editor-v3/lib/style.css'
 
 //引入路由鉴权文件
 import './permisstion'
