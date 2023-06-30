@@ -42,25 +42,33 @@ export const constantRoute = [
       title: '博客管理',
       icon: 'Lock',
     },
-    redirect: '/blog/admin/list',
+    redirect: '/blog/admin/article',
     children: [
       {
-        path: '/blog/admin/list',
-        component: () => import('@/views/blog/admin/list/index.vue'),
-        name: 'blog-list',
+        path: '/blog/admin/article',
+        component: () => import('@/views/blog/admin/article/index.vue'),
+        name: 'blog-article',
         meta: {
           title: '列表',
-          icon: 'User',
+          icon: 'Collection',
         },
       },
       {
-        path: '/blog/admin/blog/add',
-        component: () => import('@/views/blog/admin/list/BlogAdd.vue'),
+        path: '/blog/admin/article/add',
+        component: () => import('@/views/blog/admin/article/ArticleAdd.vue'),
         name: 'blog-add',
         meta: {
           hidden: true,
           title: '添加',
-          icon: 'User',
+        },
+      },
+      {
+        path: '/blog/admin/article/modify',
+        component: () => import('@/views/blog/admin/article/ArticleModify.vue'),
+        name: 'blog-modify',
+        meta: {
+          hidden: true,
+          title: '修改',
         },
       },
       {
@@ -69,7 +77,16 @@ export const constantRoute = [
         name: 'blog-category',
         meta: {
           title: '类别',
-          icon: 'UserFilled',
+          icon: 'Wallet',
+        },
+      },
+      {
+        path: '/blog/admin/tag',
+        component: () => import('@/views/blog/admin/tag/index.vue'),
+        name: 'blog-tag',
+        meta: {
+          title: '标签',
+          icon: 'CollectionTag',
         },
       },
     ],

@@ -3,14 +3,18 @@
     class="blog-list-form container"
     :inline="true"
     ref="formRef"
-    :model="blogData"
+    :model="queryParams"
   >
     <el-form-item label="标题" prop="title">
-      <el-input v-model="blogData.title" placeholder="请输入标题" clearable />
+      <el-input
+        v-model="queryParams.searchKey"
+        placeholder="请输入标题"
+        clearable
+      />
     </el-form-item>
     <el-form-item label="类别" prop="categories">
       <el-select
-        v-model="blogData.categories"
+        v-model="queryParams.categories"
         placeholder="请选择类别"
         clearable
       >
@@ -24,7 +28,7 @@
     </el-form-item>
     <el-form-item label="标签" prop="tags">
       <el-select
-        v-model="blogData.tags"
+        v-model="queryParams.tags"
         multiple
         placeholder="请选择标签"
         clearable
@@ -38,7 +42,7 @@
       </el-select>
     </el-form-item>
     <el-form-item>
-      <el-button type="primary" @click="onSearch(ruleFormRef)">查询</el-button>
+      <el-button type="primary" @click="onSearch">查询</el-button>
     </el-form-item>
     <el-form-item>
       <el-button type="primary" @click="blogAdd">添加</el-button>
@@ -47,21 +51,22 @@
 
   <div class="blog-list-table container">
     <el-table header-align="center" :data="tableData">
-      <el-table-column prop="date" label="标题" width="400" />
-      <el-table-column prop="address" label="类别" />
-      <el-table-column prop="address" label="标签" />
+      <el-table-column prop="title" label="标题" width="400" />
+      <el-table-column prop="categoryNames" label="类别" />
+      <el-table-column prop="tagNames" label="标签" />
       <el-table-column label="操作">
         <template #default="scope">
           <el-button size="small" @click="handleEdit(scope.$index, scope.row)">
-            Edit
+            修改
           </el-button>
-          <el-button
-            size="small"
-            type="danger"
-            @click="handleDelete(scope.$index, scope.row)"
+          <el-popconfirm
+            title="确定删除?"
+            @confirm="handleDelete(scope.$index, scope.row)"
           >
-            Delete
-          </el-button>
+            <template #reference>
+              <el-button size="small" type="danger">删除</el-button>
+            </template>
+          </el-popconfirm>
         </template>
       </el-table-column>
     </el-table>
@@ -70,7 +75,7 @@
       small
       background
       layout="prev, pager, next"
-      :total="50"
+      :total="totalRecord"
     />
   </div>
 </template>
@@ -78,44 +83,68 @@
 <script setup lang="ts">
 import { onMounted, reactive, ref } from 'vue'
 import { useRouter } from 'vue-router'
+import type { FormInstance } from 'element-plus'
+import { ElMessage } from 'element-plus'
 import { list as blogCategoryList } from '@/api/blog/category'
 import { list as blogTagList } from '@/api/blog/tag'
 import { BlogCategory } from '@/api/blog/category/type'
+import { page, del } from '@/api/blog/article'
 import { BlogTag } from '@/api/blog/tag/type'
-import type { FormInstance } from 'element-plus'
+import { BlogArticle } from '@/api/blog/article/type'
+
 const $router = useRouter()
 
-let blogData = reactive({
-  title: '',
+let queryParams = reactive({
+  searchKey: '',
   categories: null,
   tags: [],
 })
 let pageNumber = ref<number>(1)
-let pageSize = ref<number>(1)
+let pageSize = ref<number>(10)
 let blogCategories = ref<BlogCategory[]>([])
 let blogTags = ref<BlogTag[]>([])
 const formRef = ref<FormInstance>()
+let tableData = reactive<BlogArticle[]>([])
+let totalRecord = ref<number>(0)
+
+// 删除文章
+let handleDelete = async (index, { id }) => {
+  await del(id)
+  ElMessage({ type: 'success', message: '添加成功' })
+  selectPage()
+}
 
 // 查询按钮
-const onSearch = (formEl: FormInstance | undefined) => {}
+const onSearch = () => {
+  selectPage()
+}
 
 const getBlogCategories = async () => {
-  const res = await blogCategoryList()
+  const res = await blogCategoryList('')
   blogCategories.value = res.data
 }
 
+// 修改
+const handleEdit = (index, { id }) => {
+  $router.push({ path: '/blog/admin/article/modify', query: { id } })
+}
+
 const getBlogTags = async () => {
-  const res = await blogTagList()
+  const res = await blogTagList('')
   blogTags.value = res.data
 }
 
 // 分页
-const page = () => {}
+const selectPage = async () => {
+  let res = await page(pageNumber.value, pageSize.value, queryParams)
+  totalRecord.value = res.data.total
+  tableData = res.data.data
+}
 
 onMounted(() => {
   getBlogCategories()
   getBlogTags()
-  page()
+  selectPage()
 })
 
 // 博客添加

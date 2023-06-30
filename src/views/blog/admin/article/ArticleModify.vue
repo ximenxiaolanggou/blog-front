@@ -1,12 +1,17 @@
 <template>
   <el-form class="blog-list-form container" :inline="true" :model="formInline">
     <el-form-item label="标题">
-      <el-input v-model="blogData.title" placeholder="请输入标题" clearable />
+      <el-input
+        v-model="articleData.title"
+        placeholder="请输入标题"
+        clearable
+      />
     </el-form-item>
     <el-form-item label="类别">
       <el-select
-        v-model="blogData.categories"
+        v-model="articleData.categories"
         placeholder="请选择类别"
+        multiple
         clearable
       >
         <el-option
@@ -19,7 +24,7 @@
     </el-form-item>
     <el-form-item label="标签">
       <el-select
-        v-model="blogData.tags"
+        v-model="articleData.tags"
         multiple
         placeholder="请选择标签"
         clearable
@@ -33,9 +38,6 @@
       </el-select>
     </el-form-item>
     <el-form-item>
-      <el-button type="primary" @click="onSubmit">查询</el-button>
-    </el-form-item>
-    <el-form-item>
       <el-button type="primary" @click="blogSaveAction">保存</el-button>
     </el-form-item>
   </el-form>
@@ -43,14 +45,14 @@
   <MdEditor
     class="md"
     :toolbarsExclude="['github']"
-    v-model="blogData.content"
+    v-model="articleData.content"
     @onSave="onSave"
     @onUploadImg="onUploadImg"
   />
 </template>
 
 <script setup lang="ts">
-import { add, upload } from '@/api/blog/article'
+import { add, upload, findById } from '@/api/blog/article'
 import { list as blogCategoryList } from '@/api/blog/category'
 import { list as blogTagList } from '@/api/blog/tag'
 import { BlogCategory } from '@/api/blog/category/type'
@@ -60,11 +62,11 @@ import { MdEditor } from 'md-editor-v3'
 import { ElMessage } from 'element-plus'
 import { useRouter } from 'vue-router'
 let $router = useRouter()
-let blogData = reactive({
+let articleData = reactive({
   id: null,
   title: '',
   content: '',
-  categories: null,
+  categories: [],
   tags: [],
 })
 let blogCategories = ref<BlogCategory[]>([])
@@ -89,12 +91,12 @@ const onUploadImg = async (files, callback) => {
 
 // 保存
 const onSave = async () => {
-  if (!blogData.title || blogData.title.trim() == '') {
+  if (!articleData.title || articleData.title.trim() == '') {
     ElMessage({ type: 'warning', message: '请输入标题' })
     return
   }
-  const res = await add(blogData)
-  blogData.id = res.data
+  const res = await add(articleData)
+  articleData.id = res.data
   ElMessage({ type: 'success', message: '保存成功' })
 }
 const getBlogCategories = async () => {
@@ -109,17 +111,32 @@ const getBlogTags = async () => {
 
 // 保存按钮
 let blogSaveAction = async () => {
-  if (!blogData.title || blogData.title.trim() == '') {
+  if (!articleData.title || articleData.title.trim() == '') {
     ElMessage({ type: 'warning', message: '请输入标题' })
     return
   }
-  const res = await add(blogData)
-  blogData.id = res.data
+  const res = await add(articleData)
+  articleData.id = res.data
   ElMessage({ type: 'success', message: '添加成功' })
   $router.go(-1)
 }
 
+// 文章详情
+const articleDetail = async () => {
+  let res = await findById(articleData.id)
+  articleData.title = res.data.title
+  articleData.content = res.data.content
+  articleData.categories = res.data.categoryIds
+    ? res.data.categoryIds.split(',').map((id) => parseInt(id))
+    : []
+  articleData.tags = res.data.tagIds
+    ? res.data.tagIds.split(',').map((id) => parseInt(id))
+    : []
+}
+
 onMounted(() => {
+  articleData.id = $router.currentRoute.value.query.id
+  articleDetail()
   getBlogCategories()
   getBlogTags()
 })

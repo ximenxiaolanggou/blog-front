@@ -1,29 +1,19 @@
 <template>
-  <div class="container blog-category-header">
+  <div class="container blog-tag-header">
     <el-input
       style="width: 200px"
       clearable
       v-model="searchKey"
       placeholder="关键字"
     />
-    <el-button
-      style="margin-left: 30px"
-      type="primary"
-      @click="getCategoryList"
-    >
+    <el-button style="margin-left: 30px" type="primary" @click="getTagList">
       查询
     </el-button>
-    <el-button
-      style="margin-left: 50px"
-      type="primary"
-      @click="categoryAddAction"
-    >
-      添加
-    </el-button>
+    <el-button type="primary" @click="tagAddAction">添加</el-button>
   </div>
-  <div class="blog-category-table container">
+  <div class="blog-tag-table container">
     <el-table header-align="center" :data="tableData">
-      <el-table-column prop="name" label="类别" width="400" />
+      <el-table-column prop="name" label="标签" width="400" />
       <el-table-column prop="description" label="描述" />
       <el-table-column label="操作">
         <template #default="scope">
@@ -42,42 +32,42 @@
       </el-table-column>
     </el-table>
   </div>
-  <CategoryAdd
-    v-if="categoryAddVisiable"
+  <TagAdd
+    v-if="tagAddVisiable"
     @cancelAction="addCancelAction"
     @submitAction="addSubmitAction"
   />
-  <CategoryModify
-    v-if="categoryModifyVisiable"
+  <TagModify
+    v-if="tagModifyVisiable"
     @cancelAction="modifyCancelAction"
     @submitAction="modifySubmitAction"
-    :category="selectedRecord"
+    :tag="selectedRecord"
   />
 </template>
 
 <script setup lang="ts">
-import CategoryAdd from './components/CategoryAdd.vue'
-import CategoryModify from './components/CategoryModify.vue'
+import TagAdd from './components/TagAdd.vue'
+import TagModify from './components/TagModify.vue'
 import { ref, reactive, onMounted } from 'vue'
-import { list as blogCategoryList, del } from '@/api/blog/category'
-import { BlogCategory } from '@/api/blog/category/type'
+import { list as blogTagList, del } from '@/api/blog/tag'
+import { BlogTag } from '@/api/blog/tag/type'
 import { ElMessage } from 'element-plus'
 
-let categoryAddVisiable = ref<boolean>(false)
-let categoryModifyVisiable = ref<boolean>(false)
-let tableData = ref<BlogCategory[]>([])
-let selectedRecord = ref<BlogCategory>({})
+let tagAddVisiable = ref<boolean>(false)
+let tagModifyVisiable = ref<boolean>(false)
+let tableData = ref<BlogTag[]>([])
+let selectedRecord = ref<BlogTag>({})
 let searchKey = ref<string>('')
-// 添加类别成功事件
+// 添加标签成功事件
 const addSubmitAction = () => {
-  getCategoryList()
-  categoryAddVisiable.value = false
+  getTagList()
+  tagAddVisiable.value = false
 }
-const categoryAddAction = () => {
-  categoryAddVisiable.value = true
+const tagAddAction = () => {
+  tagAddVisiable.value = true
 }
-const getCategoryList = async () => {
-  let res = await blogCategoryList(searchKey.value)
+const getTagList = async () => {
+  let res = await blogTagList(searchKey.value)
   tableData.value = res.data
 }
 
@@ -85,30 +75,30 @@ const getCategoryList = async () => {
 const handleDelete = async (index, { id }) => {
   await del(id)
   ElMessage({ type: 'success', message: '操作成功' })
-  getCategoryList()
+  getTagList()
 }
 
 // 修改
 const handleEdit = async (index, record) => {
   selectedRecord.value = record
-  categoryModifyVisiable.value = true
+  tagModifyVisiable.value = true
 }
 
 const modifyCancelAction = () => {
-  categoryModifyVisiable.value = false
+  tagModifyVisiable.value = false
 }
 
 const modifySubmitAction = () => {
-  categoryModifyVisiable.value = false
-  getCategoryList()
+  tagModifyVisiable.value = false
+  getTagList()
 }
 
 onMounted(() => {
-  getCategoryList()
+  getTagList()
 })
 
 // 取消操作
-const addCancelAction = () => (categoryAddVisiable.value = false)
+const addCancelAction = () => (tagAddVisiable.value = false)
 </script>
 
 <style scoped lang="scss">
@@ -118,11 +108,11 @@ const addCancelAction = () => (categoryAddVisiable.value = false)
   padding: 10px;
   background-color: white;
 }
-.blog-category-header {
+.blog-tag-header {
   height: 75px;
   line-height: 50px;
 }
-.blog-category-table {
+.blog-tag-table {
   padding: 10px;
   height: calc(100vh - $base-tabbar-height - 140px);
   width: 100%;

@@ -5,15 +5,21 @@ export interface ResponseData {
   msg: string
 }
 
-export interface BlogCategory {
+export interface BlogArticle {
   id: string
-  name: string
-  description: string
+  title: string
+  content: string
+  categories: number[]
+  categoryIds: string
+  categoryNames: string
+  tags: number[]
+  tagIds: string
+  tagNames: string
   createtime: string
   updatetime: string
 }
 
 // 列表返回信息
 export interface BlogCategoryData extends ResponseData {
-  data: BlogCategory[]
+  data: BlogArticle[]
 }
