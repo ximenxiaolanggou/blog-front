@@ -1,22 +1,44 @@
 <template>
-  <el-form class="blog-list-form container" :inline="true" :model="formInline">
-    <el-form-item label="标题">
-      <el-input v-model="formInline" placeholder="请输入标题" clearable />
+  <el-form
+    class="blog-list-form container"
+    :inline="true"
+    ref="formRef"
+    :model="blogData"
+  >
+    <el-form-item label="标题" prop="title">
+      <el-input v-model="blogData.title" placeholder="请输入标题" clearable />
     </el-form-item>
-    <el-form-item label="类别">
-      <el-select v-model="formInline" placeholder="请选择类别" clearable>
-        <el-option label="Zone one" value="shanghai" />
-        <el-option label="Zone two" value="beijing" />
+    <el-form-item label="类别" prop="categories">
+      <el-select
+        v-model="blogData.categories"
+        placeholder="请选择类别"
+        clearable
+      >
+        <el-option
+          v-for="blogCategory in blogCategories"
+          :key="blogCategory.id"
+          :label="blogCategory.name"
+          :value="blogCategory.id"
+        />
       </el-select>
     </el-form-item>
-    <el-form-item label="标签">
-      <el-select v-model="formInline" placeholder="请选择标签" clearable>
-        <el-option label="Zone one" value="shanghai" />
-        <el-option label="Zone two" value="beijing" />
+    <el-form-item label="标签" prop="tags">
+      <el-select
+        v-model="blogData.tags"
+        multiple
+        placeholder="请选择标签"
+        clearable
+      >
+        <el-option
+          v-for="blogTag in blogTags"
+          :key="blogTag.id"
+          :label="blogTag.name"
+          :value="blogTag.id"
+        />
       </el-select>
     </el-form-item>
     <el-form-item>
-      <el-button type="primary" @click="onSubmit">查询</el-button>
+      <el-button type="primary" @click="onSearch(ruleFormRef)">查询</el-button>
     </el-form-item>
     <el-form-item>
       <el-button type="primary" @click="blogAdd">添加</el-button>
@@ -54,46 +76,47 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { onMounted, reactive, ref } from 'vue'
 import { useRouter } from 'vue-router'
+import { list as blogCategoryList } from '@/api/blog/category'
+import { list as blogTagList } from '@/api/blog/tag'
+import { BlogCategory } from '@/api/blog/category/type'
+import { BlogTag } from '@/api/blog/tag/type'
+import type { FormInstance } from 'element-plus'
 const $router = useRouter()
-const tableData = [
-  {
-    date: '2016-05-03',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles',
-  },
-  {
-    date: '2016-05-02',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles',
-  },
-  {
-    date: '2016-05-04',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles',
-  },
-  {
-    date: '2016-05-01',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles',
-  },
-  {
-    date: '2016-05-08',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles',
-  },
-  {
-    date: '2016-05-06',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles',
-  },
-  {
-    date: '2016-05-07',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles',
-  },
-]
+
+let blogData = reactive({
+  title: '',
+  categories: null,
+  tags: [],
+})
+let pageNumber = ref<number>(1)
+let pageSize = ref<number>(1)
+let blogCategories = ref<BlogCategory[]>([])
+let blogTags = ref<BlogTag[]>([])
+const formRef = ref<FormInstance>()
+
+// 查询按钮
+const onSearch = (formEl: FormInstance | undefined) => {}
+
+const getBlogCategories = async () => {
+  const res = await blogCategoryList()
+  blogCategories.value = res.data
+}
+
+const getBlogTags = async () => {
+  const res = await blogTagList()
+  blogTags.value = res.data
+}
+
+// 分页
+const page = () => {}
+
+onMounted(() => {
+  getBlogCategories()
+  getBlogTags()
+  page()
+})
 
 // 博客添加
 const blogAdd = () => $router.push({ name: 'blog-add' })
