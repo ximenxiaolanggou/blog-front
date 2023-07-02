@@ -10,7 +10,7 @@ nprogress.configure({ showSpinner: false })
 import useUserStore from './store/modules/user'
 import pinia from './store'
 const userStore = useUserStore(pinia)
-const whiteList = ['/login']
+const whiteList = ['/login', '/', '/articles', '/articles/detail']
 //全局守卫:项目当中任意路由切换都会触发的钩子
 //全局前置守卫
 router.beforeEach(async (to: any, from: any, next: any) => {
@@ -27,7 +27,7 @@ router.beforeEach(async (to: any, from: any, next: any) => {
   if (token) {
     //登录成功,访问login,不能访问,指向首页
     if (to.path == '/login') {
-      next({ path: '/' })
+      next({ path: '/login' })
     } else {
       //登录成功访问其余六个路由(登录排除)
       //有用户信息

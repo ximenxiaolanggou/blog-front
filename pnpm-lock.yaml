@@ -745,9 +745,9 @@ packages:
     dev: true
 
   registry.npmmirror.com/@csstools/media-query-list-parser@2.1.1(@csstools/css-parser-algorithms@2.2.0)(@csstools/css-tokenizer@2.1.1):
-    resolution: {integrity: sha512-pUjtFbaKbiFNjJo8pprrIaXLvQvWIlwPiFnRI4sEnc4F0NIGTOsw8kaJSR3CmZAKEvV8QYckovgAnWQC0bgLLQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@csstools/media-query-article-parser/-/media-query-article-parser-2.1.1.tgz}
-    id: registry.npmmirror.com/@csstools/media-query-article-parser/2.1.1
-    name: '@csstools/media-query-article-parser'
+    resolution: {integrity: sha512-pUjtFbaKbiFNjJo8pprrIaXLvQvWIlwPiFnRI4sEnc4F0NIGTOsw8kaJSR3CmZAKEvV8QYckovgAnWQC0bgLLQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@csstools/media-query-list-parser/-/media-query-list-parser-2.1.1.tgz}
+    id: registry.npmmirror.com/@csstools/media-query-list-parser/2.1.1
+    name: '@csstools/media-query-list-parser'
     version: 2.1.1
     engines: {node: ^14 || ^16 || >=18}
     peerDependencies:
@@ -2704,8 +2704,8 @@ packages:
     dev: true
 
   registry.npmmirror.com/css-functions-list@3.1.0:
-    resolution: {integrity: sha512-/9lCvYZaUbBGvYUgYGFJ4dcYiyqdhSjG7IPVluoV8A1ILjkF7ilmhp1OGUz8n+nmBcu0RNrQAzgD8B6FJbrt2w==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/css-functions-article/-/css-functions-article-3.1.0.tgz}
-    name: css-functions-article
+    resolution: {integrity: sha512-/9lCvYZaUbBGvYUgYGFJ4dcYiyqdhSjG7IPVluoV8A1ILjkF7ilmhp1OGUz8n+nmBcu0RNrQAzgD8B6FJbrt2w==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/css-functions-list/-/css-functions-list-3.1.0.tgz}
+    name: css-functions-list
     version: 3.1.0
     engines: {node: '>=12.22'}
     dev: true
@@ -3068,8 +3068,8 @@ packages:
     dev: true
 
   registry.npmmirror.com/emojis-list@3.0.0:
-    resolution: {integrity: sha512-/kyM18EfinwXZbno9FyUGeFh87KC8HRQBQGildHZbEuRyWFOmv1U10o9BBp8XVZDVNNuQKyIGIu5ZYAAXJ0V2Q==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/emojis-article/-/emojis-article-3.0.0.tgz}
-    name: emojis-article
+    resolution: {integrity: sha512-/kyM18EfinwXZbno9FyUGeFh87KC8HRQBQGildHZbEuRyWFOmv1U10o9BBp8XVZDVNNuQKyIGIu5ZYAAXJ0V2Q==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/emojis-list/-/emojis-list-3.0.0.tgz}
+    name: emojis-list
     version: 3.0.0
     engines: {node: '>= 4'}
     dev: true
@@ -4781,7 +4781,7 @@ packages:
     engines: {node: '>=4.0.0'}
     dependencies:
       big.js: registry.npmmirror.com/big.js@5.2.2
-      emojis-list: registry.npmmirror.com/emojis-article@3.0.0
+      emojis-list: registry.npmmirror.com/emojis-list@3.0.0
       json5: registry.npmmirror.com/json5@1.0.2
     dev: true
 
@@ -6543,12 +6543,12 @@ packages:
     dependencies:
       '@csstools/css-parser-algorithms': registry.npmmirror.com/@csstools/css-parser-algorithms@2.2.0(@csstools/css-tokenizer@2.1.1)
       '@csstools/css-tokenizer': registry.npmmirror.com/@csstools/css-tokenizer@2.1.1
-      '@csstools/media-query-list-parser': registry.npmmirror.com/@csstools/media-query-article-parser@2.1.1(@csstools/css-parser-algorithms@2.2.0)(@csstools/css-tokenizer@2.1.1)
+      '@csstools/media-query-list-parser': registry.npmmirror.com/@csstools/media-query-list-parser@2.1.1(@csstools/css-parser-algorithms@2.2.0)(@csstools/css-tokenizer@2.1.1)
       '@csstools/selector-specificity': registry.npmmirror.com/@csstools/selector-specificity@2.2.0(postcss-selector-parser@6.0.13)
       balanced-match: registry.npmmirror.com/balanced-match@2.0.0
       colord: registry.npmmirror.com/colord@2.9.3
       cosmiconfig: registry.npmmirror.com/cosmiconfig@8.2.0
-      css-functions-list: registry.npmmirror.com/css-functions-article@3.1.0
+      css-functions-list: registry.npmmirror.com/css-functions-list@3.1.0
       css-tree: registry.npmmirror.com/css-tree@2.3.1
       debug: registry.npmmirror.com/debug@4.3.4
       fast-glob: registry.npmmirror.com/fast-glob@3.2.12

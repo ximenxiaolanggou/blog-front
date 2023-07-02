@@ -1,0 +1,55 @@
+<template>
+  <div v-if="articles && articles.length > 0" class="article">
+    <div class="article-card" v-for="article in articles" :key="article.id">
+      <ArticleCard :article="article"/>
+    </div>
+    <div class="demo-pagination-block">
+      <el-pagination
+          v-model:current-page="pageNumber"
+          v-model:page-size="pageSize"
+          layout="prev, pager, next, jumper"
+          :total="total"
+          @current-change="handleCurrentChange"
+      />
+    </div>
+  </div>
+  <el-empty v-else description="No Data" />
+</template>
+
+<script setup lang="ts">
+import ArticleCard from './components/ArticleCard.vue'
+import {page as prePage} from "@/api/blog/pre";
+import {PreArticle} from "@/api/blog/pre/type";
+import {reactive, onMounted, ref} from "vue";
+let pageNumber = ref<number>(1)
+let pageSize = ref<number>(10)
+let total = ref<number>(0)
+let params = reactive({
+  categories:[]
+})
+let articles = ref<PreArticle[]>([])
+const page = async () => {
+  const res = await prePage(pageNumber.value, pageSize.value, params)
+  total.value = res.data.total
+  articles.value = res.data.data
+}
+
+// 页码切换事件
+const handleCurrentChange = (arg) => {
+  pageNumber.value = arg
+  page()
+}
+onMounted(() => {
+  page()
+})
+</script>
+
+<style scoped lang="scss">
+.article {
+  width: 80%;
+  margin: 20px auto;
+  .article-card {
+    margin: 10px 0;
+  }
+}
+</style>

@@ -13,7 +13,7 @@ export const constantRoute = [
   },
   {
     //登录成功以后展示数据的路由
-    path: '/',
+    path: '/admin',
     component: () => import('@/layout/basic/index.vue'),
     name: 'layout',
     meta: {
@@ -21,7 +21,7 @@ export const constantRoute = [
       hidden: false,
       icon: '',
     },
-    redirect: '/blog',
+    redirect: '/home',
     children: [
       {
         path: '/home',
@@ -89,6 +89,33 @@ export const constantRoute = [
           icon: 'CollectionTag',
         },
       },
+    ],
+  },
+  {
+    path: '/',
+    component: () => import('@/layout/blog/index.vue'),
+    name: 'blog-pre',
+    meta: {
+      title: '博客',
+    },
+    redirect: '/articles',
+    children:  [
+      {
+        path: '/articles',
+        component: () => import('@/views/blog/pre/articles/index.vue'),
+        name: 'articles',
+        meta: {
+          title: '文章',hidden: true,
+        },
+      },
+      {
+        path: '/articles/detail',
+        component: () => import('@/views/blog/pre/detail/index.vue'),
+        name: 'article-detail',
+        meta: {
+          title: '详情',hidden: true,
+        },
+      }
     ],
   },
   {
