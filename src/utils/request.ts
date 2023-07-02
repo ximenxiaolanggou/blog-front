@@ -2,9 +2,10 @@ import axios from 'axios'
 import { ElMessage } from 'element-plus'
 import { useRouter } from 'vue-router'
 import useUserStore from '../store/modules/user'
+import {UserState} from "@/store/modules/types/type";
 import pinia from '../store'
 let $router = useRouter()
-let userStore
+let userStore:UserState
 //获取存储用户信息的仓库对象
 //创建axios实例
 let request = axios.create({

@@ -47,7 +47,7 @@
   <!-- 下拉菜单 -->
   <el-dropdown>
     <span class="el-dropdown-link">
-      {{ userStore.username }}
+      {{ userStore.user && userStore.user.username }}
       <el-icon class="el-icon--right">
         <arrow-down />
       </el-icon>
@@ -67,8 +67,9 @@ import { useRouter, useRoute } from 'vue-router'
 import useUserStore from '@/store/modules/user'
 //获取骨架的小仓库
 import useLayOutSettingStore from '@/store/modules/setting'
+import {UserState} from "@/store/modules/types/type";
 let layoutSettingStore = useLayOutSettingStore()
-let userStore = useUserStore()
+let userStore:UserState = useUserStore()
 //获取路由器对象
 let $router = useRouter()
 //获取路由对向

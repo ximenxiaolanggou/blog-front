@@ -20,7 +20,10 @@
 import ArticleCard from './components/ArticleCard.vue'
 import {page as prePage} from "@/api/blog/pre";
 import {PreArticle} from "@/api/blog/pre/type";
-import {reactive, onMounted, ref} from "vue";
+import {reactive, onMounted, ref, watch} from "vue";
+import useCategoryStore from "@/store/modules/category";
+import {CategoryState} from "@/store/modules/types/type";
+let categoryStore:CategoryState = useCategoryStore();
 let pageNumber = ref<number>(1)
 let pageSize = ref<number>(10)
 let total = ref<number>(0)
@@ -33,6 +36,15 @@ const page = async () => {
   total.value = res.data.total
   articles.value = res.data.data
 }
+
+watch(() => categoryStore.selectedCategory, () => {
+  if(categoryStore.selectedCategory == -1) {
+    params.categories = []
+  }else {
+    params.categories = [categoryStore.selectedCategory]
+  }
+  page()
+});
 
 // 页码切换事件
 const handleCurrentChange = (arg) => {

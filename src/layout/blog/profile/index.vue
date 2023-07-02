@@ -24,7 +24,7 @@
       </div>
       <div class="profile-categories-contents">
         <div style="margin-bottom: 5px;margin-top: 5px" v-for="category in cac" :key="category.name">
-          <CategoryTip :category="category"/>
+          <CategoryTip @click="categorySelected(category)" :class="{'bisque': category.selected }" :category="category"/>
         </div>
 
       </div>
@@ -37,15 +37,32 @@ import CategoryTip from './components/CategoryTip.vue'
 import {defineProps, ref, onMounted} from 'vue'
 import {PreCategoryRelativeArticle} from "@/api/blog/pre/type";
 import {categoryCount, articleCount,categoryArticleCount } from "@/api/blog/pre";
+import useCategoryStore from "@/store/modules/category";
+import {CategoryState} from "@/store/modules/types/type";
+let categoryStore:CategoryState = useCategoryStore();
 let ac = ref(0)
 let cc = ref(0)
 let cac = ref<PreCategoryRelativeArticle[]>([])
-
 // 文章数量
 const getArticleCount = async () => {
   let res = await articleCount()
   ac.value = res.data
+}
 
+// 类别选择
+const categorySelected = ({id}) => {
+  cac.value.forEach(category => {
+    if(category.id == id) {
+      if(category['selected']) {
+        categoryStore.selectedCategory = -1
+      }else {
+        categoryStore.selectedCategory = id
+      }
+      category['selected'] = !category['selected']
+    }else {
+      category['selected'] = false
+    }
+  })
 }
 
 // 类别数量
@@ -123,5 +140,8 @@ onMounted(() => {
       margin-left: 20px;
     }
   }
+}
+.bisque {
+  background-color: bisque;
 }
 </style>

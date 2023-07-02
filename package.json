@@ -26,10 +26,11 @@
     "pinia": "^2.0.34",
     "qs": "^6.11.2",
     "vue": "^3.2.47",
-    "vue-router": "^4.2.2"
+    "vue-router": "^4.1.6"
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.22.5",
+    "@types/node": "^20.3.3",
     "@typescript-eslint/eslint-plugin": "^5.60.0",
     "@typescript-eslint/parser": "^5.60.0",
     "@vitejs/plugin-vue": "^4.1.0",

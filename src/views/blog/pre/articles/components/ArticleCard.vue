@@ -26,6 +26,7 @@ const showArticle = () => {
 
 <style scoped lang="scss">
 .article-card {
+  box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.1);
   background-color: white;
   padding: 30px;
   width: 800px;

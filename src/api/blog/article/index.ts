@@ -31,7 +31,7 @@ export function upload(data) {
   })
 }
 
-export function page(pageNumber, pageSize, params) {
+export function page(pageNumber:number, pageSize:number, params:number) {
   return request({
     url: `${API.PAGE}/${pageNumber}/${pageSize}?${qs.stringify(params, {
       arrayFormat: 'repeat',
@@ -40,14 +40,14 @@ export function page(pageNumber, pageSize, params) {
   })
 }
 
-export function findById(id) {
+export function findById(id:number) {
   return request({
     url: `${API.FINDBYID}/${id}`,
     method: 'get',
   })
 }
 
-export function del(id) {
+export function del(id:number) {
   return request({
     url: `${API.DEL}/${id}`,
     method: 'delete',

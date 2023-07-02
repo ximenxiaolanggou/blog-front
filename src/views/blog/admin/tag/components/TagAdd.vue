@@ -37,7 +37,7 @@ import { add } from '@/api/blog/tag'
 import type { FormInstance } from 'element-plus'
 import { ElMessage } from 'element-plus'
 //自定义事件的方法
-let $emit = defineEmits(['addCancelAction', 'addSubmitAction'])
+let $emit = defineEmits(['cancelAction', 'submitAction'])
 const formRef = ref<FormInstance>()
 const form = reactive({
   name: '',

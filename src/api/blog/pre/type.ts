@@ -23,4 +23,5 @@ export interface PreCategoryRelativeArticle {
   id:string
   name:string
   relaticeArticleCount:number
+  selected?:boolean | null
 }

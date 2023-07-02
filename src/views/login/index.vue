@@ -5,7 +5,6 @@
       <el-form
         ref="ruleFormRef"
         :model="ruleForm"
-        :rules="rules"
         label-width="65px"
         class="demo-ruleForm"
         :size="formSize"
@@ -62,14 +61,14 @@ import type { FormInstance } from 'element-plus'
 
 interface RuleForm {
   username: string
-  passowrd: string
+  password: string
 }
 
 const formSize = ref('default')
 const ruleFormRef = ref<FormInstance>()
 const ruleForm = reactive<RuleForm>({
+  password: "",
   username: '',
-  password: '',
 })
 
 const submitForm = async (formEl: FormInstance | undefined) => {

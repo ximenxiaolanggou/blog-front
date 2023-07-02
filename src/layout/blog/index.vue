@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <Profile class="profile" />
-    <div class="main">
+    <div class="main" id="main">
       <router-view />
     </div>
   </div>
@@ -14,15 +14,23 @@ import Profile from './profile/index.vue'
 
 <style scoped lang="scss">
 .container {
-  background-color: whitesmoke;
+  margin: 20px;
   display: flex;
   height: 100vh;
   .profile {
+    box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.1);
     flex: 1;
   }
   .main {
-    border-left: 1px solid gainsboro;
+
     flex: 4;
   }
+}
+
+
+::-webkit-scrollbar-thumb{
+  width: 10px;
+  background-color: bisque;
+  border-radius: 10px;
 }
 </style>

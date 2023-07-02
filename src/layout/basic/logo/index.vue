@@ -9,8 +9,8 @@
 //引入设置标题与logo这配置文件
 import setting from '@/setting'
 import useLayOutSettingStore from '@/store/modules/setting'
-let LayOutSettingStore = useLayOutSettingStore()
 import { watch, ref, nextTick } from 'vue'
+let LayOutSettingStore = useLayOutSettingStore()
 let show = ref(true)
 // 这里无用
 watch(LayOutSettingStore, (nVal, oVal) => {

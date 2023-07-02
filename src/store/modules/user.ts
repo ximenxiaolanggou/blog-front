@@ -1,8 +1,8 @@
 //创建用户相关的小仓库
 import { defineStore } from 'pinia'
 import type { UserState } from './types/type'
-import { constantRoute } from '@/router/routes'
 import { login, logout, userInfo } from '@/api/auth'
+import { constantRoute } from '@/router/routes'
 import router from '@/router'
 
 //创建用户小仓库
@@ -15,14 +15,12 @@ const useUserStore = defineStore('User', {
       menuRoutes: constantRoute, //仓库存储生成菜单需要数组(路由)
       user: null,
       avatar: '',
-      //存储当前用户是否包含某一个按钮
-      buttons: [],
     }
   },
   //异步|逻辑的地方
   actions: {
     //用户登录的方法
-    async userLogin(data) {
+    async userLogin(data:any) {
       //登录请求
       const result = await login(data)
       //pinia仓库存储一下token
@@ -44,7 +42,7 @@ const useUserStore = defineStore('User', {
 
     // 登出
     async userLogout() {
-      const result = await logout()
+      await logout()
       localStorage.clear()
       this.tokenName = ''
       this.tokenValue = ''

@@ -1,5 +1,5 @@
 <template>
-  <el-form class="blog-list-form container" :inline="true" :model="formInline">
+  <el-form class="blog-list-form container" :inline="true" :model="articleData">
     <el-form-item label="标题">
       <el-input
         v-model="articleData.title"
@@ -100,7 +100,7 @@ const onSave = async () => {
   ElMessage({ type: 'success', message: '保存成功' })
 }
 const getBlogCategories = async () => {
-  const res = await blogCategoryList()
+  const res = await blogCategoryList(null)
   blogCategories.value = res.data
 }
 

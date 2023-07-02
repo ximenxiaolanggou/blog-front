@@ -1,9 +1,6 @@
 <template>
-  <div>
-
-  </div>
-  <div  class="detail" >
-    <div   class="detail-content"><MdPreview  v-model="article.content" :editorId="state.id" :modelValue="state.text" previewTheme="vuepress"/></div>
+  <div id="main" class="detail" >
+    <div class="detail-content"><MdPreview  v-model="article.content" :editorId="state.id" previewTheme="vuepress"/></div>
     <div class="detail-catalog"><MdCatalog :editorId="state.id" :scrollElement="scrollElement"/></div>
   </div>
 </template>
@@ -13,40 +10,41 @@ import {useRouter} from "vue-router";
 import {onMounted, reactive, ref} from "vue";
 import {detail} from "@/api/blog/pre";
 import {MdPreview, MdCatalog } from "md-editor-v3";
-
+import {BlogArticle} from "@/api/blog/article/type";
 
 let $router = useRouter()
-let article = ref({})
+let article = ref<BlogArticle>({
+  id: '',
+  content: ''
+})
 const state = reactive({
   theme: 'smart-blue',
   text: '标题',
   id: 'my-editor'
 });
 
-let scrollElement = ref()
+let scrollElement = document.documentElement
 
 
 // 获取文章详情
-const getArticle = async (id) => {
+const getArticle = async (id:number) => {
   const res = await detail(id)
   article.value = res.data
 }
 
 onMounted(() => {
-  scrollElement.value = document.getElementById('deta');
-  console.log(1,scrollElement.value)
-  getArticle($router.currentRoute.value.query.id)
+  getArticle($router.currentRoute.value.query.id as number)
 })
 </script>
 
 <style scoped lang="scss">
 .detail {
-  overflow: scroll;
-  height: 100vh;
-  background-color: white;
+  box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.1);
+  background-color: bisque;
   width: 70%;
   margin-left: 30px;
   .detail-catalog {
+    box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.1);
     width: 400px;
     position: fixed;
     right: 30px;
@@ -54,7 +52,6 @@ onMounted(() => {
     background-color: white;
     padding: 20px;
     border-radius: 10px;
-
   }
 }
 </style>

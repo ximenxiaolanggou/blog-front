@@ -1,5 +1,5 @@
 <template>
-  <el-form class="blog-list-form container" :inline="true" :model="formInline">
+  <el-form class="blog-list-form container" :inline="true" :model="articleData">
     <el-form-item label="标题">
       <el-input
         v-model="articleData.title"
@@ -36,9 +36,6 @@
           :value="blogTag.id"
         />
       </el-select>
-    </el-form-item>
-    <el-form-item>
-      <el-button type="primary" @click="onSubmit">查询</el-button>
     </el-form-item>
     <el-form-item>
       <el-button type="primary" @click="blogSaveAction">保存</el-button>

@@ -97,6 +97,7 @@ export const constantRoute = [
     name: 'blog-pre',
     meta: {
       title: '博客',
+      hidden: true,
     },
     redirect: '/articles',
     children:  [
@@ -105,7 +106,7 @@ export const constantRoute = [
         component: () => import('@/views/blog/pre/articles/index.vue'),
         name: 'articles',
         meta: {
-          title: '文章',hidden: true,
+          title: '文章',hidden: true,icon: '',
         },
       },
       {
@@ -113,7 +114,7 @@ export const constantRoute = [
         component: () => import('@/views/blog/pre/detail/index.vue'),
         name: 'article-detail',
         meta: {
-          title: '详情',hidden: true,
+          title: '详情',hidden: true,icon: '',
         },
       }
     ],

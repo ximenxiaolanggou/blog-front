@@ -21,7 +21,7 @@ enum API {
  * @param data
  * @returns {AxiosPromise}
  */
-export function login(data) {
+export function login(data:loginFormData) {
   return request({
     url: API.AUTH_URL,
     method: 'post',

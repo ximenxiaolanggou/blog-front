@@ -33,13 +33,16 @@ dependencies:
     specifier: ^3.2.47
     version: registry.npmmirror.com/vue@3.2.47
   vue-router:
-    specifier: ^4.2.2
-    version: registry.npmmirror.com/vue-router@4.2.2(vue@3.2.47)
+    specifier: ^4.1.6
+    version: registry.npmmirror.com/vue-router@4.1.6(vue@3.2.47)
 
 devDependencies:
   '@babel/eslint-parser':
     specifier: ^7.22.5
     version: registry.npmmirror.com/@babel/eslint-parser@7.22.5(@babel/core@7.22.5)(eslint@8.43.0)
+  '@types/node':
+    specifier: ^20.3.3
+    version: registry.npmmirror.com/@types/node@20.3.3
   '@typescript-eslint/eslint-plugin':
     specifier: ^5.60.0
     version: registry.npmmirror.com/@typescript-eslint/eslint-plugin@5.60.0(@typescript-eslint/parser@5.60.0)(eslint@8.43.0)(typescript@5.0.2)
@@ -120,7 +123,7 @@ devDependencies:
     version: registry.npmmirror.com/typescript@5.0.2
   vite:
     specifier: ^4.3.9
-    version: registry.npmmirror.com/vite@4.3.9(sass@1.63.6)
+    version: registry.npmmirror.com/vite@4.3.9(@types/node@20.3.3)(sass@1.63.6)
   vite-plugin-svg-icons:
     specifier: ^2.0.1
     version: registry.npmmirror.com/vite-plugin-svg-icons@2.0.1(vite@4.3.9)
@@ -1427,10 +1430,10 @@ packages:
     version: 1.2.2
     dev: true
 
-  registry.npmmirror.com/@types/node@20.3.1:
-    resolution: {integrity: sha512-EhcH/wvidPy1WeML3TtYFGR83UzjxeWRen9V402T8aUGYsCHOmfoisV3ZSg03gAFIbLq8TnWOJ0f4cALtnSEUg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@types/node/-/node-20.3.1.tgz}
+  registry.npmmirror.com/@types/node@20.3.3:
+    resolution: {integrity: sha512-wheIYdr4NYML61AjC8MKj/2jrR/kDQri/CIpVoZwldwhnIrD/j9jIU5bJ8yBKuB2VhpFV7Ab6G2XkBjv9r9Zzw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@types/node/-/node-20.3.3.tgz}
     name: '@types/node'
-    version: 20.3.1
+    version: 20.3.3
     dev: true
 
   registry.npmmirror.com/@types/normalize-package-data@2.4.1:
@@ -1450,7 +1453,7 @@ packages:
     name: '@types/svgo'
     version: 2.6.4
     dependencies:
-      '@types/node': registry.npmmirror.com/@types/node@20.3.1
+      '@types/node': registry.npmmirror.com/@types/node@20.3.3
     dev: true
 
   registry.npmmirror.com/@types/web-bluetooth@0.0.16:
@@ -1626,7 +1629,7 @@ packages:
       vite: ^4.0.0
       vue: ^3.2.25
     dependencies:
-      vite: registry.npmmirror.com/vite@4.3.9(sass@1.63.6)
+      vite: registry.npmmirror.com/vite@4.3.9(@types/node@20.3.3)(sass@1.63.6)
       vue: registry.npmmirror.com/vue@3.2.47
     dev: true
 
@@ -4614,7 +4617,7 @@ packages:
     version: 27.5.1
     engines: {node: '>= 10.13.0'}
     dependencies:
-      '@types/node': registry.npmmirror.com/@types/node@20.3.1
+      '@types/node': registry.npmmirror.com/@types/node@20.3.3
       merge-stream: registry.npmmirror.com/merge-stream@2.0.0
       supports-color: registry.npmmirror.com/supports-color@8.1.1
     dev: true
@@ -7025,12 +7028,12 @@ packages:
       pathe: registry.npmmirror.com/pathe@0.2.0
       svg-baker: registry.npmmirror.com/svg-baker@1.7.0
       svgo: registry.npmmirror.com/svgo@2.8.0
-      vite: registry.npmmirror.com/vite@4.3.9(sass@1.63.6)
+      vite: registry.npmmirror.com/vite@4.3.9(@types/node@20.3.3)(sass@1.63.6)
     transitivePeerDependencies:
       - supports-color
     dev: true
 
-  registry.npmmirror.com/vite@4.3.9(sass@1.63.6):
+  registry.npmmirror.com/vite@4.3.9(@types/node@20.3.3)(sass@1.63.6):
     resolution: {integrity: sha512-qsTNZjO9NoJNW7KnOrgYwczm0WctJ8m/yqYAMAK9Lxt4SoySUfS5S8ia9K7JHpa3KEeMfyF8LoJ3c5NeBJy6pg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/vite/-/vite-4.3.9.tgz}
     id: registry.npmmirror.com/vite/4.3.9
     name: vite
@@ -7058,6 +7061,7 @@ packages:
       terser:
         optional: true
     dependencies:
+      '@types/node': registry.npmmirror.com/@types/node@20.3.3
       esbuild: registry.npmmirror.com/esbuild@0.17.19
       postcss: registry.npmmirror.com/postcss@8.4.24
       rollup: registry.npmmirror.com/rollup@3.25.2
@@ -7105,11 +7109,11 @@ packages:
       - supports-color
     dev: true
 
-  registry.npmmirror.com/vue-router@4.2.2(vue@3.2.47):
-    resolution: {integrity: sha512-cChBPPmAflgBGmy3tBsjeoe3f3VOSG6naKyY5pjtrqLGbNEXdzCigFUHgBvp9e3ysAtFtEx7OLqcSDh/1Cq2TQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/vue-router/-/vue-router-4.2.2.tgz}
-    id: registry.npmmirror.com/vue-router/4.2.2
+  registry.npmmirror.com/vue-router@4.1.6(vue@3.2.47):
+    resolution: {integrity: sha512-DYWYwsG6xNPmLq/FmZn8Ip+qrhFEzA14EI12MsMgVxvHFDYvlr4NXpVF5hrRH1wVcDP8fGi5F4rxuJSl8/r+EQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/vue-router/-/vue-router-4.1.6.tgz}
+    id: registry.npmmirror.com/vue-router/4.1.6
     name: vue-router
-    version: 4.2.2
+    version: 4.1.6
     peerDependencies:
       vue: ^3.2.0
     dependencies:
