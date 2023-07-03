@@ -20,9 +20,9 @@ export interface BlogArticle {
 }
 
 export interface ArticleQueryParams {
-  searchKey: string | null,
-  categories: number[],
-  tags: number[],
+  searchKey: string | null
+  categories: number[]
+  tags: number[]
 }
 
 // 列表返回信息

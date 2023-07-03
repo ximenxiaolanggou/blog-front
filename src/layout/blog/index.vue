@@ -9,7 +9,6 @@
 
 <script setup lang="ts">
 import Profile from './profile/index.vue'
-
 </script>
 
 <style scoped lang="scss">
@@ -22,13 +21,11 @@ import Profile from './profile/index.vue'
     flex: 1;
   }
   .main {
-
     flex: 4;
   }
 }
 
-
-::-webkit-scrollbar-thumb{
+::-webkit-scrollbar-thumb {
   width: 10px;
   background-color: bisque;
   border-radius: 10px;

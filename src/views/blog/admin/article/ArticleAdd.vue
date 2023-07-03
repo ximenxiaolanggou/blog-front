@@ -75,9 +75,9 @@ let blogCategories = ref<BlogCategory[]>([])
 let blogTags = ref<BlogTag[]>([])
 
 // 上传图片
-const onUploadImg = async (files:any, callback:any) => {
+const onUploadImg = async (files: any, callback: any) => {
   const res = await Promise.all(
-    files.map((file:any) => {
+    files.map((file: any) => {
       return new Promise((rev, rej) => {
         const form = new FormData()
         form.append('file', file)

@@ -9,7 +9,7 @@ enum API {
 }
 
 // 列表
-export function list(searchKey:string) {
+export function list(searchKey: string) {
   return request({
     url: API.LIST,
     method: 'get',
@@ -18,7 +18,7 @@ export function list(searchKey:string) {
 }
 
 // 添加
-export function add(data:BlogCategory) {
+export function add(data: BlogCategory) {
   return request({
     url: API.ADD,
     method: 'post',
@@ -27,7 +27,7 @@ export function add(data:BlogCategory) {
 }
 
 // 修改
-export function update(data:BlogCategory) {
+export function update(data: BlogCategory) {
   return request({
     url: `${API.MODIFY}/${data.id}`,
     method: 'put',
@@ -36,7 +36,7 @@ export function update(data:BlogCategory) {
 }
 
 // 删除
-export function del(id:number) {
+export function del(id: number) {
   return request({
     url: `${API.DELETE}/${id}`,
     method: 'delete',

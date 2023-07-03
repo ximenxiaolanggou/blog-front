@@ -67,7 +67,7 @@ interface RuleForm {
 const formSize = ref('default')
 const ruleFormRef = ref<FormInstance>()
 const ruleForm = reactive<RuleForm>({
-  password: "",
+  password: '',
   username: '',
 })
 

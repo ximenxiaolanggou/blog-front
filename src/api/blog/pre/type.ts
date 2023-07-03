@@ -20,8 +20,8 @@ export interface PreArticle {
 }
 
 export interface PreCategoryRelativeArticle {
-  id:number
-  name:string
-  relaticeArticleCount:number
-  selected?:boolean | null
+  id: number
+  name: string
+  relaticeArticleCount: number
+  selected?: boolean | null
 }

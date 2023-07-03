@@ -74,9 +74,9 @@ let blogCategories = ref<BlogCategory[]>([])
 let blogTags = ref<BlogTag[]>([])
 
 // 上传图片
-const onUploadImg = async (files:any, callback:any) => {
+const onUploadImg = async (files: any, callback: any) => {
   const res = await Promise.all(
-    files.map((file:any) => {
+    files.map((file: any) => {
       return new Promise((rev, rej) => {
         const form = new FormData()
         form.append('file', file)
@@ -128,16 +128,17 @@ const articleDetail = async () => {
   articleData.title = res.data.title
   articleData.content = res.data.content
   articleData.categories = res.data.categoryIds
-    ? res.data.categoryIds.split(',').map((id:string) => parseInt(id))
+    ? res.data.categoryIds.split(',').map((id: string) => parseInt(id))
     : []
   articleData.tags = res.data.tagIds
-    ? res.data.tagIds.split(',').map((id:string) => parseInt(id))
+    ? res.data.tagIds.split(',').map((id: string) => parseInt(id))
     : []
 }
 
 onMounted(() => {
-  const id:string | null | LocationQueryValue[] = $router.currentRoute.value.query.id
-  articleData.id = parseInt(id as string);
+  const id: string | null | LocationQueryValue[] =
+    $router.currentRoute.value.query.id
+  articleData.id = parseInt(id as string)
   articleDetail()
   getBlogCategories()
   getBlogTags()

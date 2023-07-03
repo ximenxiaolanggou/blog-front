@@ -82,14 +82,14 @@ const getCategoryList = async () => {
 }
 
 // 删除
-const handleDelete = async (index:number, record:BlogCategory) => {
+const handleDelete = async (index: number, record: BlogCategory) => {
   await del(record.id as number)
   ElMessage({ type: 'success', message: '操作成功' })
   getCategoryList()
 }
 
 // 修改
-const handleEdit = async (index:number, record:BlogCategory) => {
+const handleEdit = async (index: number, record: BlogCategory) => {
   selectedRecord.value = record
   categoryModifyVisiable.value = true
 }

@@ -1,12 +1,14 @@
 <template>
   <div class="category">
     <div class="category-name">{{ category.name }}</div>
-    <div class="category-count"><el-tag effect="dark">{{ category.relaticeArticleCount }}</el-tag></div>
+    <div class="category-count">
+      <el-tag effect="dark">{{ category.relaticeArticleCount }}</el-tag>
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import {defineProps} from "vue";
+import { defineProps } from 'vue'
 
 defineProps(['category'])
 </script>

@@ -10,7 +10,7 @@ enum API {
   FINDBYID = '/blogArticle/findById',
 }
 
-export function add(data:BlogArticle) {
+export function add(data: BlogArticle) {
   return request({
     url: API.ADD,
     method: 'post',
@@ -23,7 +23,7 @@ export function add(data:BlogArticle) {
  * @param data
  * @returns {AxiosPromise}
  */
-export function upload(data:any) {
+export function upload(data: any) {
   return request({
     url: API.UPLOAD,
     method: 'post',
@@ -32,7 +32,11 @@ export function upload(data:any) {
   })
 }
 
-export function page(pageNumber:number, pageSize:number, params:ArticleQueryParams) {
+export function page(
+  pageNumber: number,
+  pageSize: number,
+  params: ArticleQueryParams,
+) {
   return request({
     url: `${API.PAGE}/${pageNumber}/${pageSize}?${qs.stringify(params, {
       arrayFormat: 'repeat',
@@ -41,14 +45,14 @@ export function page(pageNumber:number, pageSize:number, params:ArticleQueryPara
   })
 }
 
-export function findById(id:number) {
+export function findById(id: number) {
   return request({
     url: `${API.FINDBYID}/${id}`,
     method: 'get',
   })
 }
 
-export function del(id:number) {
+export function del(id: number) {
   return request({
     url: `${API.DEL}/${id}`,
     method: 'delete',

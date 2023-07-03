@@ -67,7 +67,7 @@ import { useRouter, useRoute } from 'vue-router'
 import useUserStore from '@/store/modules/user'
 //获取骨架的小仓库
 import useLayOutSettingStore from '@/store/modules/setting'
-import {UserState} from "@/store/modules/types/type";
+import { UserState } from '@/store/modules/types/type'
 let layoutSettingStore = useLayOutSettingStore()
 let userStore = useUserStore()
 //获取路由器对象

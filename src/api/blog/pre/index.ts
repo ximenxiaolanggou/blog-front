@@ -11,7 +11,11 @@ enum API {
 }
 
 // 分页
-export function page(pageNumber:number, pageSize:number, params:ArticleQueryParams) {
+export function page(
+  pageNumber: number,
+  pageSize: number,
+  params: ArticleQueryParams,
+) {
   return request({
     url: `${API.PAGE}/${pageNumber}/${pageSize}?${qs.stringify(params, {
       arrayFormat: 'repeat',
@@ -21,7 +25,7 @@ export function page(pageNumber:number, pageSize:number, params:ArticleQueryPara
 }
 
 // 文章详情
-export function detail(id:number) {
+export function detail(id: number) {
   return request({
     url: `${API.DETAIL}/${id}`,
     method: 'get',

@@ -2,17 +2,22 @@
   <div class="profile">
     <!-- 介绍 -->
     <div class="profile-intrduce">
-      <div class="profile-introduce-img-container"><img class="profile-introduce-img"  src="../../../assets/images/blog/avatar.png"/></div>
+      <div class="profile-introduce-img-container">
+        <img
+          class="profile-introduce-img"
+          src="../../../assets/images/blog/avatar.png"
+        />
+      </div>
       <div class="profile-introduce-name-container">Damoncai</div>
       <div class="profile-introduce-motto-container">逝者如斯夫，不舍昼夜</div>
       <div class="profile-introduce-article-container">
         <div class="profile-introduce-article-total">
-          <div>{{ac}}</div>
+          <div>{{ ac }}</div>
           <div style="margin-top: 15px">Articles</div>
         </div>
         <div class="profile-introduce-article-spliter"></div>
         <div class="profile-introduce-article-categories">
-          <div>{{cc}}</div>
+          <div>{{ cc }}</div>
           <div style="margin-top: 15px">Categories</div>
         </div>
       </div>
@@ -20,13 +25,21 @@
     <!-- 类别 -->
     <div class="profile-categories">
       <div class="profile-categories-tip">
-        <el-icon ><Grid /></el-icon> <span style="font-size: 20px">Categories</span>
+        <el-icon><Grid /></el-icon>
+        <span style="font-size: 20px">Categories</span>
       </div>
       <div class="profile-categories-contents">
-        <div style="margin-bottom: 5px;margin-top: 5px" v-for="category in cac" :key="category.name">
-          <CategoryTip @click="categorySelected(category)" :class="{'bisque': category.selected }" :category="category"/>
+        <div
+          style="margin-bottom: 5px; margin-top: 5px"
+          v-for="category in cac"
+          :key="category.name"
+        >
+          <CategoryTip
+            @click="categorySelected(category)"
+            :class="{ bisque: category.selected }"
+            :category="category"
+          />
         </div>
-
       </div>
     </div>
   </div>
@@ -34,12 +47,16 @@
 
 <script setup lang="ts">
 import CategoryTip from './components/CategoryTip.vue'
-import {defineProps, ref, onMounted} from 'vue'
-import {PreCategoryRelativeArticle} from "@/api/blog/pre/type";
-import {categoryCount, articleCount,categoryArticleCount } from "@/api/blog/pre";
-import useCategoryStore from "@/store/modules/category";
-import {CategoryState} from "@/store/modules/types/type";
-let categoryStore:CategoryState = useCategoryStore();
+import { defineProps, ref, onMounted } from 'vue'
+import { PreCategoryRelativeArticle } from '@/api/blog/pre/type'
+import {
+  categoryCount,
+  articleCount,
+  categoryArticleCount,
+} from '@/api/blog/pre'
+import useCategoryStore from '@/store/modules/category'
+import { CategoryState } from '@/store/modules/types/type'
+let categoryStore: CategoryState = useCategoryStore()
 let ac = ref(0)
 let cc = ref(0)
 let cac = ref<PreCategoryRelativeArticle[]>([])
@@ -50,17 +67,17 @@ const getArticleCount = async () => {
 }
 
 // 类别选择
-const categorySelected = (record:PreCategoryRelativeArticle) => {
-  const id:number = record.id
-  cac.value.forEach(category => {
-    if(category.id == id) {
-      if(category['selected']) {
+const categorySelected = (record: PreCategoryRelativeArticle) => {
+  const id: number = record.id
+  cac.value.forEach((category) => {
+    if (category.id == id) {
+      if (category['selected']) {
         categoryStore.selectedCategory = -1
-      }else {
+      } else {
         categoryStore.selectedCategory = id
       }
       category['selected'] = !category['selected']
-    }else {
+    } else {
       category['selected'] = false
     }
   })
@@ -70,7 +87,6 @@ const categorySelected = (record:PreCategoryRelativeArticle) => {
 const getCategoryCount = async () => {
   let res = await categoryCount()
   cc.value = res.data
-
 }
 
 // 类别关联文章数量
@@ -106,10 +122,10 @@ onMounted(() => {
       text-align: center;
     }
     .profile-introduce-motto-container {
-      font-family: 'Josefin Sans','PingFang SC';
+      font-family: 'Josefin Sans', 'PingFang SC';
       color: #5e5e5e;
       line-height: 1.5;
-      opacity: .7;
+      opacity: 0.7;
       margin-top: 15px;
       text-align: center;
     }

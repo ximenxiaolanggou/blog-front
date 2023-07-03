@@ -2,8 +2,18 @@
   <div class="article-card">
     <h1 class="article-card-title" @click="showArticle">{{ article.title }}</h1>
     <div class="article-card-tip">
-      <div class="article-card-tip-calendar"><el-icon size="20" ><Calendar /></el-icon><span class="article-card-tip-calendar-detail">{{ article.createtime }}</span></div>
-      <div class="article-card-tip-category" v-if="!!article.categoryNames"><el-icon size="20"><Folder /></el-icon><span class="article-card-tip-category-detail">{{ article.categoryNames }}</span></div>
+      <div class="article-card-tip-calendar">
+        <el-icon size="20"><Calendar /></el-icon>
+        <span class="article-card-tip-calendar-detail">
+          {{ article.createtime }}
+        </span>
+      </div>
+      <div class="article-card-tip-category" v-if="!!article.categoryNames">
+        <el-icon size="20"><Folder /></el-icon>
+        <span class="article-card-tip-category-detail">
+          {{ article.categoryNames }}
+        </span>
+      </div>
     </div>
     <div class="article-card-content">
       <el-text :truncated="true" size="large">{{ article.content }}</el-text>
@@ -12,16 +22,15 @@
 </template>
 
 <script setup lang="ts">
-import {useRouter} from "vue-router";
-import {defineProps} from "vue";
+import { useRouter } from 'vue-router'
+import { defineProps } from 'vue'
 const $router = useRouter()
 let props = defineProps(['article'])
 
 // 文章详情事件
 const showArticle = () => {
-  $router.push({path: '/articles/detail', query: {id: props.article.id}})
+  $router.push({ path: '/articles/detail', query: { id: props.article.id } })
 }
-
 </script>
 
 <style scoped lang="scss">
@@ -53,6 +62,8 @@ const showArticle = () => {
     }
   }
   .article-card-content {
+    height: 20px;
+    line-height: 20px;
     margin-top: 10px;
   }
 }

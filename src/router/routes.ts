@@ -100,13 +100,15 @@ export const constantRoute = [
       hidden: true,
     },
     redirect: '/articles',
-    children:  [
+    children: [
       {
         path: '/articles',
         component: () => import('@/views/blog/pre/articles/index.vue'),
         name: 'articles',
         meta: {
-          title: '文章',hidden: true,icon: '',
+          title: '文章',
+          hidden: true,
+          icon: '',
         },
       },
       {
@@ -114,9 +116,11 @@ export const constantRoute = [
         component: () => import('@/views/blog/pre/detail/index.vue'),
         name: 'article-detail',
         meta: {
-          title: '详情',hidden: true,icon: '',
+          title: '详情',
+          hidden: true,
+          icon: '',
         },
-      }
+      },
     ],
   },
   {

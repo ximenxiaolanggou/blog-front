@@ -20,7 +20,7 @@ const useUserStore = defineStore('User', {
   //异步|逻辑的地方
   actions: {
     //用户登录的方法
-    async userLogin(data:any) {
+    async userLogin(data: any) {
       //登录请求
       const result = await login(data)
       //pinia仓库存储一下token

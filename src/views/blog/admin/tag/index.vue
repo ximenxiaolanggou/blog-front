@@ -72,14 +72,14 @@ const getTagList = async () => {
 }
 
 // 删除
-const handleDelete = async (index:number, record:BlogTag) => {
+const handleDelete = async (index: number, record: BlogTag) => {
   await del(record.id as number)
   ElMessage({ type: 'success', message: '操作成功' })
   getTagList()
 }
 
 // 修改
-const handleEdit = async (index:number, record:BlogTag) => {
+const handleEdit = async (index: number, record: BlogTag) => {
   selectedRecord.value = record
   tagModifyVisiable.value = true
 }

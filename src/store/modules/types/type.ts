@@ -11,12 +11,12 @@ export interface UserState {
 
 //定义分类仓库state对象的ts类型
 export interface CategoryState {
-  selectedCategory:number
+  selectedCategory: number
 }
 
 export interface UserInfo {
-  username:string
-  permissions:string[]
-  mobile:string
-  mail:string
+  username: string
+  permissions: string[]
+  mobile: string
+  mail: string
 }

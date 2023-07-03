@@ -110,13 +110,13 @@ let tableData = ref<BlogArticle[]>([])
 let totalRecord = ref<number>(0)
 
 // 删除文章
-let handleDelete = async (index:number, record:BlogArticle) => {
+let handleDelete = async (index: number, record: BlogArticle) => {
   await del(record.id as number)
   ElMessage({ type: 'success', message: '操作成功' })
   selectPage()
 }
 
-const handleCurrentChange = (arg:any) => {
+const handleCurrentChange = (arg: any) => {
   pageNumber.value = arg
   selectPage()
 }
@@ -132,8 +132,8 @@ const getBlogCategories = async () => {
 }
 
 // 修改
-const handleEdit = (index:number, record:BlogArticle) => {
-  $router.push({ path: '/blog/admin/article/modify', query: { id:record.id } })
+const handleEdit = (index: number, record: BlogArticle) => {
+  $router.push({ path: '/blog/admin/article/modify', query: { id: record.id } })
 }
 
 const getBlogTags = async () => {
