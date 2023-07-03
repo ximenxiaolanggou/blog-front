@@ -60,9 +60,10 @@ import { BlogTag } from '@/api/blog/tag/type'
 import { onMounted, ref, reactive } from 'vue'
 import { MdEditor } from 'md-editor-v3'
 import { ElMessage } from 'element-plus'
-import { useRouter } from 'vue-router'
+import { LocationQueryValue, useRouter } from 'vue-router'
+import { BlogArticle } from '@/api/blog/article/type'
 let $router = useRouter()
-let articleData = reactive({
+let articleData = reactive<BlogArticle>({
   id: null,
   title: '',
   content: '',
@@ -73,9 +74,9 @@ let blogCategories = ref<BlogCategory[]>([])
 let blogTags = ref<BlogTag[]>([])
 
 // 上传图片
-const onUploadImg = async (files, callback) => {
+const onUploadImg = async (files:any, callback:any) => {
   const res = await Promise.all(
-    files.map((file) => {
+    files.map((file:any) => {
       return new Promise((rev, rej) => {
         const form = new FormData()
         form.append('file', file)
@@ -86,7 +87,7 @@ const onUploadImg = async (files, callback) => {
     }),
   )
 
-  callback(res.map((item) => item.data))
+  callback(res.map((item) => import.meta.env.VITE_APP_BASE_API + item.data))
 }
 
 // 保存
@@ -100,12 +101,12 @@ const onSave = async () => {
   ElMessage({ type: 'success', message: '保存成功' })
 }
 const getBlogCategories = async () => {
-  const res = await blogCategoryList(null)
+  const res = await blogCategoryList('')
   blogCategories.value = res.data
 }
 
 const getBlogTags = async () => {
-  const res = await blogTagList()
+  const res = await blogTagList('')
   blogTags.value = res.data
 }
 
@@ -123,19 +124,20 @@ let blogSaveAction = async () => {
 
 // 文章详情
 const articleDetail = async () => {
-  let res = await findById(articleData.id)
+  let res = await findById(articleData.id as number)
   articleData.title = res.data.title
   articleData.content = res.data.content
   articleData.categories = res.data.categoryIds
-    ? res.data.categoryIds.split(',').map((id) => parseInt(id))
+    ? res.data.categoryIds.split(',').map((id:string) => parseInt(id))
     : []
   articleData.tags = res.data.tagIds
-    ? res.data.tagIds.split(',').map((id) => parseInt(id))
+    ? res.data.tagIds.split(',').map((id:string) => parseInt(id))
     : []
 }
 
 onMounted(() => {
-  articleData.id = $router.currentRoute.value.query.id
+  const id:string | null | LocationQueryValue[] = $router.currentRoute.value.query.id
+  articleData.id = parseInt(id as string);
   articleDetail()
   getBlogCategories()
   getBlogTags()

@@ -1,4 +1,5 @@
 import request from '@/utils/request'
+import { BlogCategory } from '@/api/blog/category/type'
 
 enum API {
   LIST = '/blogCategory/list',
@@ -8,7 +9,7 @@ enum API {
 }
 
 // 列表
-export function list(searchKey) {
+export function list(searchKey:string) {
   return request({
     url: API.LIST,
     method: 'get',
@@ -17,7 +18,7 @@ export function list(searchKey) {
 }
 
 // 添加
-export function add(data) {
+export function add(data:BlogCategory) {
   return request({
     url: API.ADD,
     method: 'post',
@@ -26,7 +27,7 @@ export function add(data) {
 }
 
 // 修改
-export function update(data) {
+export function update(data:BlogCategory) {
   return request({
     url: `${API.MODIFY}/${data.id}`,
     method: 'put',
@@ -35,7 +36,7 @@ export function update(data) {
 }
 
 // 删除
-export function del(id) {
+export function del(id:number) {
   return request({
     url: `${API.DELETE}/${id}`,
     method: 'delete',

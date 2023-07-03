@@ -16,6 +16,7 @@
       <el-select
         v-model="queryParams.categories"
         placeholder="请选择类别"
+        multiple
         clearable
       >
         <el-option
@@ -72,10 +73,11 @@
     </el-table>
     <el-pagination
       class="blog-list-pagination"
-      small
-      background
-      layout="prev, pager, next"
+      v-model:current-page="pageNumber"
+      v-model:page-size="pageSize"
+      layout="prev, pager, next, jumper"
       :total="totalRecord"
+      @current-change="handleCurrentChange"
     />
   </div>
 </template>
@@ -90,13 +92,13 @@ import { list as blogTagList } from '@/api/blog/tag'
 import { BlogCategory } from '@/api/blog/category/type'
 import { page, del } from '@/api/blog/article'
 import { BlogTag } from '@/api/blog/tag/type'
-import { BlogArticle } from '@/api/blog/article/type'
+import { ArticleQueryParams, BlogArticle } from '@/api/blog/article/type'
 
 const $router = useRouter()
 
-let queryParams = reactive({
+let queryParams = reactive<ArticleQueryParams>({
   searchKey: '',
-  categories: null,
+  categories: [],
   tags: [],
 })
 let pageNumber = ref<number>(1)
@@ -104,13 +106,18 @@ let pageSize = ref<number>(10)
 let blogCategories = ref<BlogCategory[]>([])
 let blogTags = ref<BlogTag[]>([])
 const formRef = ref<FormInstance>()
-let tableData = reactive<BlogArticle[]>([])
+let tableData = ref<BlogArticle[]>([])
 let totalRecord = ref<number>(0)
 
 // 删除文章
-let handleDelete = async (index, { id }) => {
-  await del(id)
-  ElMessage({ type: 'success', message: '添加成功' })
+let handleDelete = async (index:number, record:BlogArticle) => {
+  await del(record.id as number)
+  ElMessage({ type: 'success', message: '操作成功' })
+  selectPage()
+}
+
+const handleCurrentChange = (arg:any) => {
+  pageNumber.value = arg
   selectPage()
 }
 
@@ -125,8 +132,8 @@ const getBlogCategories = async () => {
 }
 
 // 修改
-const handleEdit = (index, { id }) => {
-  $router.push({ path: '/blog/admin/article/modify', query: { id } })
+const handleEdit = (index:number, record:BlogArticle) => {
+  $router.push({ path: '/blog/admin/article/modify', query: { id:record.id } })
 }
 
 const getBlogTags = async () => {
@@ -138,7 +145,7 @@ const getBlogTags = async () => {
 const selectPage = async () => {
   let res = await page(pageNumber.value, pageSize.value, queryParams)
   totalRecord.value = res.data.total
-  tableData = res.data.data
+  tableData.value = res.data.data
 }
 
 onMounted(() => {

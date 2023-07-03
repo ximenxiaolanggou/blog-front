@@ -23,12 +23,15 @@ import {PreArticle} from "@/api/blog/pre/type";
 import {reactive, onMounted, ref, watch} from "vue";
 import useCategoryStore from "@/store/modules/category";
 import {CategoryState} from "@/store/modules/types/type";
+import { ArticleQueryParams } from '@/api/blog/article/type'
 let categoryStore:CategoryState = useCategoryStore();
 let pageNumber = ref<number>(1)
 let pageSize = ref<number>(10)
 let total = ref<number>(0)
-let params = reactive({
-  categories:[]
+let params = reactive<ArticleQueryParams>({
+  searchKey: '',
+  categories: [],
+  tags: [],
 })
 let articles = ref<PreArticle[]>([])
 const page = async () => {
@@ -38,16 +41,15 @@ const page = async () => {
 }
 
 watch(() => categoryStore.selectedCategory, () => {
-  if(categoryStore.selectedCategory == -1) {
-    params.categories = []
-  }else {
-    params.categories = [categoryStore.selectedCategory]
+  params.categories = []
+  if(categoryStore.selectedCategory != -1) {
+    params.categories.push(categoryStore.selectedCategory)
   }
   page()
 });
 
 // 页码切换事件
-const handleCurrentChange = (arg) => {
+const handleCurrentChange = (arg:any) => {
   pageNumber.value = arg
   page()
 }

@@ -43,6 +43,9 @@ devDependencies:
   '@types/node':
     specifier: ^20.3.3
     version: registry.npmmirror.com/@types/node@20.3.3
+  '@types/qs':
+    specifier: ^6.9.7
+    version: registry.npmmirror.com/@types/qs@6.9.7
   '@typescript-eslint/eslint-plugin':
     specifier: ^5.60.0
     version: registry.npmmirror.com/@typescript-eslint/eslint-plugin@5.60.0(@typescript-eslint/parser@5.60.0)(eslint@8.43.0)(typescript@5.0.2)
@@ -1440,6 +1443,12 @@ packages:
     resolution: {integrity: sha512-Gj7cI7z+98M282Tqmp2K5EIsoouUEzbBJhQQzDE3jSIRk6r9gsz0oUokqIUR4u1R3dMHo0pDHM7sNOHyhulypw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@types/normalize-package-data/-/normalize-package-data-2.4.1.tgz}
     name: '@types/normalize-package-data'
     version: 2.4.1
+    dev: true
+
+  registry.npmmirror.com/@types/qs@6.9.7:
+    resolution: {integrity: sha512-FGa1F62FT09qcrueBA6qYTrJPVDzah9a+493+o2PCXsesWHIn27G98TsSMs3WPNbZIEj4+VJf6saSFpvD+3Zsw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@types/qs/-/qs-6.9.7.tgz}
+    name: '@types/qs'
+    version: 6.9.7
     dev: true
 
   registry.npmmirror.com/@types/semver@7.5.0:

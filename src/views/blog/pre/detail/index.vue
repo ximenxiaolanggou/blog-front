@@ -6,7 +6,7 @@
 </template>
 
 <script setup lang="ts">
-import {useRouter} from "vue-router";
+import { LocationQuery, LocationQueryValue, useRouter } from 'vue-router'
 import {onMounted, reactive, ref} from "vue";
 import {detail} from "@/api/blog/pre";
 import {MdPreview, MdCatalog } from "md-editor-v3";
@@ -14,7 +14,7 @@ import {BlogArticle} from "@/api/blog/article/type";
 
 let $router = useRouter()
 let article = ref<BlogArticle>({
-  id: '',
+  id: null,
   content: ''
 })
 const state = reactive({
@@ -33,7 +33,8 @@ const getArticle = async (id:number) => {
 }
 
 onMounted(() => {
-  getArticle($router.currentRoute.value.query.id as number)
+  let id:string | null | LocationQueryValue[] = $router.currentRoute.value.query.id
+  getArticle(parseInt(id as string))
 })
 </script>
 

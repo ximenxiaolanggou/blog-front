@@ -6,11 +6,11 @@ export interface ResponseData {
 }
 
 export interface BlogCategory {
-  id: string
+  id?: number | null
   name: string
   description: string
-  createtime: string
-  updatetime: string
+  createtime?: string
+  updatetime?: string
 }
 
 // 列表返回信息

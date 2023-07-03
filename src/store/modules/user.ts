@@ -30,6 +30,7 @@ const useUserStore = defineStore('User', {
       //本地存储持久化存储一份
       localStorage.setItem('TOKEN_NAME', this.tokenName)
       localStorage.setItem('TOKEN_VALUE', this.tokenValue)
+      return Promise.resolve('ok')
     },
 
     //获取用户信息方法
@@ -38,6 +39,7 @@ const useUserStore = defineStore('User', {
       const result = await userInfo()
       //如果获取用户信息成功，存储一下用户信息
       this.user = result.data
+      return Promise.resolve('ok')
     },
 
     // 登出
@@ -48,6 +50,7 @@ const useUserStore = defineStore('User', {
       this.tokenValue = ''
       this.user = null
       router.push('/login')
+      return Promise.resolve('ok')
     },
   },
   getters: {},

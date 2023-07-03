@@ -75,9 +75,9 @@ let blogCategories = ref<BlogCategory[]>([])
 let blogTags = ref<BlogTag[]>([])
 
 // 上传图片
-const onUploadImg = async (files, callback) => {
+const onUploadImg = async (files:any, callback:any) => {
   const res = await Promise.all(
-    files.map((file) => {
+    files.map((file:any) => {
       return new Promise((rev, rej) => {
         const form = new FormData()
         form.append('file', file)
@@ -88,7 +88,7 @@ const onUploadImg = async (files, callback) => {
     }),
   )
 
-  callback(res.map((item) => item.data))
+  callback(res.map((item) => import.meta.env.VITE_APP_BASE_API + item.data))
 }
 
 // 保存
@@ -102,12 +102,12 @@ const onSave = async () => {
   ElMessage({ type: 'success', message: '保存成功' })
 }
 const getBlogCategories = async () => {
-  const res = await blogCategoryList()
+  const res = await blogCategoryList('')
   blogCategories.value = res.data
 }
 
 const getBlogTags = async () => {
-  const res = await blogTagList()
+  const res = await blogTagList('')
   blogTags.value = res.data
 }
 

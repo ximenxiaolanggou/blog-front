@@ -66,7 +66,7 @@ import { ElMessage } from 'element-plus'
 let categoryAddVisiable = ref<boolean>(false)
 let categoryModifyVisiable = ref<boolean>(false)
 let tableData = ref<BlogCategory[]>([])
-let selectedRecord = ref<BlogCategory>({})
+let selectedRecord = ref<BlogCategory>()
 let searchKey = ref<string>('')
 // 添加类别成功事件
 const addSubmitAction = () => {
@@ -82,14 +82,14 @@ const getCategoryList = async () => {
 }
 
 // 删除
-const handleDelete = async (index, { id }) => {
-  await del(id)
+const handleDelete = async (index:number, record:BlogCategory) => {
+  await del(record.id as number)
   ElMessage({ type: 'success', message: '操作成功' })
   getCategoryList()
 }
 
 // 修改
-const handleEdit = async (index, record) => {
+const handleEdit = async (index:number, record:BlogCategory) => {
   selectedRecord.value = record
   categoryModifyVisiable.value = true
 }

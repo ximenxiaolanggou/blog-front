@@ -6,7 +6,7 @@ export interface ResponseData {
 }
 
 export interface BlogArticle {
-  id?: string
+  id?: number | null
   title?: string
   content?: string
   categories?: number[]
@@ -17,6 +17,12 @@ export interface BlogArticle {
   tagNames?: string
   createtime?: string
   updatetime?: string
+}
+
+export interface ArticleQueryParams {
+  searchKey: string | null,
+  categories: number[],
+  tags: number[],
 }
 
 // 列表返回信息

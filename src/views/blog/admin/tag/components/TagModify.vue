@@ -36,13 +36,14 @@ import { reactive, ref, onMounted, defineProps } from 'vue'
 import { update } from '@/api/blog/tag'
 import type { FormInstance } from 'element-plus'
 import { ElMessage } from 'element-plus'
+import { BlogTag } from '@/api/blog/tag/type'
 const props = defineProps(['tag'])
 let visiable = ref(true)
 //自定义事件的方法
 let $emit = defineEmits(['cancelAction', 'submitAction'])
 const formRef = ref<FormInstance>()
-const form = reactive({
-  id: '',
+const form = reactive<BlogTag>({
+  id: null,
   name: '',
   description: '',
 })

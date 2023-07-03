@@ -20,7 +20,7 @@ export interface PreArticle {
 }
 
 export interface PreCategoryRelativeArticle {
-  id:string
+  id:number
   name:string
   relaticeArticleCount:number
   selected?:boolean | null

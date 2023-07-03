@@ -1,5 +1,6 @@
 import request from '@/utils/request'
 import qs from 'qs'
+import { ArticleQueryParams } from '@/api/blog/article/type'
 
 enum API {
   ARTICLE_COUNT = '/blogPre/articleCount',
@@ -10,7 +11,7 @@ enum API {
 }
 
 // 分页
-export function page(pageNumber, pageSize, params) {
+export function page(pageNumber:number, pageSize:number, params:ArticleQueryParams) {
   return request({
     url: `${API.PAGE}/${pageNumber}/${pageSize}?${qs.stringify(params, {
       arrayFormat: 'repeat',
@@ -20,7 +21,7 @@ export function page(pageNumber, pageSize, params) {
 }
 
 // 文章详情
-export function detail(id) {
+export function detail(id:number) {
   return request({
     url: `${API.DETAIL}/${id}`,
     method: 'get',

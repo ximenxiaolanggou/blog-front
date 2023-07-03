@@ -50,7 +50,8 @@ const getArticleCount = async () => {
 }
 
 // 类别选择
-const categorySelected = ({id}) => {
+const categorySelected = (record:PreCategoryRelativeArticle) => {
+  const id:number = record.id
   cac.value.forEach(category => {
     if(category.id == id) {
       if(category['selected']) {

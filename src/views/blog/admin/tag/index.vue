@@ -56,7 +56,7 @@ import { ElMessage } from 'element-plus'
 let tagAddVisiable = ref<boolean>(false)
 let tagModifyVisiable = ref<boolean>(false)
 let tableData = ref<BlogTag[]>([])
-let selectedRecord = ref<BlogTag>({})
+let selectedRecord = ref<BlogTag>()
 let searchKey = ref<string>('')
 // 添加标签成功事件
 const addSubmitAction = () => {
@@ -72,14 +72,14 @@ const getTagList = async () => {
 }
 
 // 删除
-const handleDelete = async (index, { id }) => {
-  await del(id)
+const handleDelete = async (index:number, record:BlogTag) => {
+  await del(record.id as number)
   ElMessage({ type: 'success', message: '操作成功' })
   getTagList()
 }
 
 // 修改
-const handleEdit = async (index, record) => {
+const handleEdit = async (index:number, record:BlogTag) => {
   selectedRecord.value = record
   tagModifyVisiable.value = true
 }

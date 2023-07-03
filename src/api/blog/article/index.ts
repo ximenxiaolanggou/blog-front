@@ -1,5 +1,6 @@
 import request from '@/utils/request'
 import qs from 'qs'
+import { ArticleQueryParams, BlogArticle } from '@/api/blog/article/type'
 
 enum API {
   ADD = '/blogArticle/saveOrUpdate',
@@ -9,7 +10,7 @@ enum API {
   FINDBYID = '/blogArticle/findById',
 }
 
-export function add(data) {
+export function add(data:BlogArticle) {
   return request({
     url: API.ADD,
     method: 'post',
@@ -22,7 +23,7 @@ export function add(data) {
  * @param data
  * @returns {AxiosPromise}
  */
-export function upload(data) {
+export function upload(data:any) {
   return request({
     url: API.UPLOAD,
     method: 'post',
@@ -31,7 +32,7 @@ export function upload(data) {
   })
 }
 
-export function page(pageNumber:number, pageSize:number, params:number) {
+export function page(pageNumber:number, pageSize:number, params:ArticleQueryParams) {
   return request({
     url: `${API.PAGE}/${pageNumber}/${pageSize}?${qs.stringify(params, {
       arrayFormat: 'repeat',
