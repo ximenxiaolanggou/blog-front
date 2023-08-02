@@ -53,6 +53,8 @@ onMounted(() => {
   width: 70%;
   margin-left: 30px;
   .detail-catalog {
+    height: 800px;
+    overflow: auto;
     box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.1);
     width: 400px;
     position: fixed;
