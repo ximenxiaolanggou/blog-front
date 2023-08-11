@@ -8,7 +8,9 @@
           src="../../../assets/images/blog/avatar.png"
         />
       </div>
-      <div class="profile-introduce-name-container" @click='goHome'><span class='profile-introduce-name'>Damoncai</span></div>
+      <div class="profile-introduce-name-container" @click="goHome">
+        <span class="profile-introduce-name">Damoncai</span>
+      </div>
       <div class="profile-introduce-motto-container">逝者如斯夫，不舍昼夜</div>
       <div class="profile-introduce-article-container">
         <div class="profile-introduce-article-total">
@@ -48,7 +50,7 @@
 <script setup lang="ts">
 import CategoryTip from './components/CategoryTip.vue'
 import { defineProps, ref, onMounted } from 'vue'
-import {useRouter} from 'vue-router'
+import { useRouter } from 'vue-router'
 import { PreCategoryRelativeArticle } from '@/api/blog/pre/type'
 import {
   categoryCount,
@@ -58,7 +60,7 @@ import {
 import useCategoryStore from '@/store/modules/category'
 import { CategoryState } from '@/store/modules/types/type'
 import * as path from 'path'
-const $router = useRouter();
+const $router = useRouter()
 let categoryStore: CategoryState = useCategoryStore()
 let ac = ref(0)
 let cc = ref(0)
@@ -71,9 +73,9 @@ const getArticleCount = async () => {
 
 // 回首页
 const goHome = () => {
-  cac.value.forEach((category) => category['selected'] = false)
+  cac.value.forEach((category) => (category['selected'] = false))
   categoryStore.selectedCategory = -1
-  $router.push({path: '/'})
+  $router.push({ path: '/' })
 }
 
 // 类别选择
