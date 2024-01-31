@@ -112,6 +112,7 @@ const getBlogTags = async () => {
 
 // 保存按钮
 let blogSaveAction = async () => {
+  articleData.content = vditor.value.getValue()
   if (!articleData.title || articleData.title.trim() == '') {
     ElMessage({ type: 'warning', message: '请输入标题' })
     return

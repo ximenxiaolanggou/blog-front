@@ -89,15 +89,6 @@ export const constantRoute = [
           icon: 'CollectionTag',
         },
       },
-      {
-        path: '/blog/admin/test',
-        component: () => import('@/views/blog/admin/test/index.vue'),
-        name: 'blog-test',
-        meta: {
-          title: '测试',
-          icon: 'CollectionTag',
-        },
-      },
     ],
   },
   {
