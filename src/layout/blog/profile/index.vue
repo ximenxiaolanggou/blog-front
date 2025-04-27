@@ -30,7 +30,7 @@
         <el-icon><Grid /></el-icon>
         <span style="font-size: 20px">Categories</span>
       </div>
-      <div class="profile-categories-contents">
+      <el-scrollbar class="profile-categories-contents">
         <div
           style="margin-bottom: 5px; margin-top: 5px"
           v-for="category in cac"
@@ -42,7 +42,7 @@
             :category="category"
           />
         </div>
-      </div>
+      </el-scrollbar>
     </div>
   </div>
 </template>
@@ -104,7 +104,12 @@ const getCategoryCount = async () => {
 // 类别关联文章数量
 const getCategoryArticleCount = async () => {
   let res = await categoryArticleCount()
-  cac.value = res.data
+  cac.value = res.data.map((category) => {
+    if(category.id == categoryStore.selectedCategory) {
+      category['selected'] = true
+    }
+    return category
+  })
 }
 onMounted(() => {
   getArticleCount()
@@ -117,7 +122,7 @@ onMounted(() => {
 .profile {
   .profile-intrduce {
     .profile-introduce-img-container {
-      margin: 50px auto 20px auto;
+      margin: 20px auto 20px auto;
       width: 150px;
       border-radius: 50%;
       overflow: hidden;
@@ -160,14 +165,19 @@ onMounted(() => {
   }
   .profile-categories {
     margin-top: 30px;
+    height: 100%;
     .profile-categories-tip {
       padding-left: 20px;
       line-height: 30px;
       height: 30px;
     }
     .profile-categories-contents {
+      height: calc(100% - 385px);
       margin-left: 20px;
     }
+  }
+  &:hover {
+    cursor: pointer;
   }
 }
 .bisque {

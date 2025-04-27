@@ -1,5 +1,6 @@
 <template>
   <div id="main" class="detail">
+    <el-icon @click="back" class="back" size="70px"><Back /></el-icon>
     <div class="detail-content">
       <MdPreview
         v-model="article.content"
@@ -11,6 +12,7 @@
       <MdCatalog :editorId="state.id" :scrollElement="scrollElement" />
     </div>
   </div>
+  <el-backtop :right="100" :bottom="100" />
 </template>
 
 <script setup lang="ts">
@@ -39,6 +41,13 @@ const getArticle = async (id: number) => {
   article.value = res.data
 }
 
+/**
+ * 回退
+ */
+const back = () => {
+  $router.back()
+}
+
 onMounted(() => {
   let id: string | null | LocationQueryValue[] =
     $router.currentRoute.value.query.id
@@ -48,8 +57,16 @@ onMounted(() => {
 
 <style scoped lang="scss">
 .detail {
+  .back {
+    padding: 10px;
+    color: lightblue;
+    &:hover{
+      cursor: pointer;
+      transform: scale(1.5);
+      transition: 0.5s;
+    }
+  }
   box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.1);
-  background-color: bisque;
   width: 70%;
   margin-left: 30px;
   .detail-catalog {
