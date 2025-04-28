@@ -17,6 +17,7 @@ import 'md-editor-v3/lib/style.css'
 
 //引入路由鉴权文件
 import './permisstion'
+import { Router } from 'vue-router'
 
 let app = createApp(App)
 

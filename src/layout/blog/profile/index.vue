@@ -49,7 +49,7 @@
 
 <script setup lang="ts">
 import CategoryTip from './components/CategoryTip.vue'
-import { defineProps, ref, onMounted } from 'vue'
+import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { PreCategoryRelativeArticle } from '@/api/blog/pre/type'
 import {
@@ -60,6 +60,7 @@ import {
 import useCategoryStore from '@/store/modules/category'
 import { CategoryState } from '@/store/modules/types/type'
 import * as path from 'path'
+import Category from '@/store/modules/category'
 const $router = useRouter()
 let categoryStore: CategoryState = useCategoryStore()
 let ac = ref(0)
@@ -104,7 +105,8 @@ const getCategoryCount = async () => {
 // 类别关联文章数量
 const getCategoryArticleCount = async () => {
   let res = await categoryArticleCount()
-  cac.value = res.data.map((category) => {
+  cac.value = res.data
+  cac.value.forEach((category) => {
     if(category.id == categoryStore.selectedCategory) {
       category['selected'] = true
     }

@@ -35,6 +35,9 @@ let params = reactive<ArticleQueryParams>({
 })
 let articles = ref<PreArticle[]>([])
 const page = async () => {
+  if(categoryStore.selectedCategory != -1) {
+    params.categories = [categoryStore.selectedCategory]
+  }
   const res = await prePage(pageNumber.value, pageSize.value, params)
   total.value = res.data.total
   articles.value = res.data.data

@@ -32,7 +32,7 @@
 </template>
 
 <script setup lang="ts">
-import { reactive, ref, onMounted, defineProps } from 'vue'
+import { reactive, ref, onMounted } from 'vue'
 import { update } from '@/api/blog/category'
 import type { FormInstance } from 'element-plus'
 import { ElMessage } from 'element-plus'
@@ -61,8 +61,9 @@ const submitForm = (formEl: FormInstance | undefined) => {
       await update(form)
       ElMessage({ type: 'success', message: '操作成功' })
       $emit('submitAction')
+      Promise.resolve()
     } else {
-      return false
+      Promise.reject()
     }
   })
 }

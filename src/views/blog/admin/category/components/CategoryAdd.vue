@@ -57,8 +57,9 @@ const submitForm = (formEl: FormInstance | undefined) => {
       await add(form)
       ElMessage({ type: 'success', message: '操作成功' })
       $emit('submitAction')
+      Promise.resolve()
     } else {
-      return false
+      Promise.reject()
     }
   })
 }
