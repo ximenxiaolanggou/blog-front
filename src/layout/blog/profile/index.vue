@@ -107,7 +107,7 @@ const getCategoryArticleCount = async () => {
   let res = await categoryArticleCount()
   cac.value = res.data
   cac.value.forEach((category) => {
-    if(category.id == categoryStore.selectedCategory) {
+    if (category.id == categoryStore.selectedCategory) {
       category['selected'] = true
     }
     return category

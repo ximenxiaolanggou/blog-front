@@ -35,7 +35,7 @@ let params = reactive<ArticleQueryParams>({
 })
 let articles = ref<PreArticle[]>([])
 const page = async () => {
-  if(categoryStore.selectedCategory != -1) {
+  if (categoryStore.selectedCategory != -1) {
     params.categories = [categoryStore.selectedCategory]
   }
   const res = await prePage(pageNumber.value, pageSize.value, params)

@@ -15,9 +15,9 @@ const useCategoryStore = defineStore('Category', {
     // 自定义序列化方法（可选）
     serializer: {
       serialize: JSON.stringify,
-      deserialize: JSON.parse
-    }
-  }
+      deserialize: JSON.parse,
+    },
+  },
 })
 
 export default useCategoryStore

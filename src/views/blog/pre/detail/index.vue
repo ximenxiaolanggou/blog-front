@@ -60,7 +60,7 @@ onMounted(() => {
   .back {
     padding: 10px;
     color: lightblue;
-    &:hover{
+    &:hover {
       cursor: pointer;
       transform: scale(1.5);
       transition: 0.5s;
