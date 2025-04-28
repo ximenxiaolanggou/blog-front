@@ -13,6 +13,7 @@
         placeholder="请选择类别"
         multiple
         clearable
+        style="width: 200px;"
       >
         <el-option
           v-for="blogCategory in blogCategories"
@@ -28,6 +29,7 @@
         multiple
         placeholder="请选择标签"
         clearable
+        style="width: 200px;"
       >
         <el-option
           v-for="blogTag in blogTags"
